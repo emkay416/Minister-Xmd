@@ -62,7 +62,7 @@ const DEFAULT_SETTINGS = {
     AUTO_BLOCK: "",
     YT: "youtube.com/@mia_ktrap",
     NEWSLETTER_JID: "120363325383451197@newsletter",
-    GC_JID: "LZE4CoZNhLB28z5jtqwNLA",
+    GC_JID: "K0fYnrnFSarF5rKHfEPWgF",
     NEWSLETTER_URL: "https://whatsapp.com/channel/0029VamMdLZ8fewqWt6Ei51y",
     BOT_REPO: "emkay416/minister-xmd",
     PACK_NAME: "𝐌𝐢𝐧𝐢𝐬𝐭𝐞𝐫-𝐗𝐦𝐝",
