@@ -1,4 +1,5 @@
 const { gmd, toPtt } = require("../gift");
+const { logError } = require('../gift/logError');
 const yts = require("yt-search");
 const axios = require("axios");
 
@@ -62,7 +63,7 @@ gmd(
       );
       await react("✅");
     } catch (error) {
-      console.error("Error during download process:", error);
+      logError("Error during download process", error);
       await react("❌");
       return reply("Oops! Something went wrong. Please try again.");
     }
@@ -105,7 +106,7 @@ gmd(
       );
       await react("✅");
     } catch (error) {
-      console.error("Error during download process:", error);
+      logError("Error during download process", error);
       await react("❌");
       return reply("Oops! Something went wrong. Please try again.");
     }
@@ -296,7 +297,7 @@ gmd(
 
           await react("✅");
         } catch (error) {
-          console.error("Error sending media:", error);
+          logError("Error sending media", error);
           await react("❌");
           await Gifted.sendMessage(from, { text: "Failed to send media. Please try again." }, { quoted: messageData });
         }
@@ -309,7 +310,7 @@ gmd(
       }, 300000);
       
     } catch (error) {
-      console.error("Error during download process:", error);
+      logError("Error during download process", error);
       await react("❌");
       return reply("Oops! Something went wrong. Please try again.");
     }
@@ -457,7 +458,7 @@ gmd(
 
           await react("✅");
         } catch (error) {
-          console.error("Error sending media:", error);
+          logError("Error sending media", error);
           await react("❌");
           await Gifted.sendMessage(from, { text: "Failed to send media. Please try again." }, { quoted: messageData });
         }
@@ -470,7 +471,7 @@ gmd(
       }, 300000);
       
     } catch (error) {
-      console.error("Error during download process:", error);
+      logError("Error during download process", error);
       await react("❌");
       return reply("Oops! Something went wrong. Please try again.");
     }

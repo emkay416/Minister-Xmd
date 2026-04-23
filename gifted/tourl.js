@@ -1,4 +1,5 @@
 const { gmd } = require("../gift");
+const { logError } = require('../gift/logError');
 const path = require("path");
 const fs = require('fs').promises;
 const { sendButtons } = require('gifted-btns');
@@ -182,7 +183,7 @@ async function handleUpload(from, Gifted, conText, service) {
         await react("✅");
         
     } catch (error) {
-        console.error("Upload Error:", error);
+        logError("Upload Error", error);
         await reply(`❌ Failed to upload to ${service}. Error: ${error.message}`);
         await react("❌");
     }

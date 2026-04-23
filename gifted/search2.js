@@ -77,7 +77,7 @@ gmd(
 
       await react("✅");
     } catch (error) {
-      console.error("Google image search error:", error);
+      logError("Google image search error", error);
       await react("❌");
       return reply("Failed to search images. Please try again.");
     }
@@ -138,7 +138,7 @@ gmd(
 
       await react("✅");
     } catch (error) {
-      console.error("Unsplash search error:", error);
+      logError("Unsplash search error", error);
       await react("❌");
       return reply("Failed to search Unsplash. Please try again.");
     }
@@ -208,7 +208,7 @@ gmd(
 
       await react("✅");
     } catch (error) {
-      console.error("Wallpaper search error:", error);
+      logError("Wallpaper search error", error);
       await react("❌");
       return reply("Failed to search wallpapers. Please try again.");
     }
@@ -282,7 +282,7 @@ gmd(
       await reply(txt);
       await react("✅");
     } catch (error) {
-      console.error("Weather search error:", error);
+      logError("Weather search error", error);
       await react("❌");
       return reply("Failed to get weather data. Please try again.");
     }
@@ -390,7 +390,7 @@ gmd(
 
       await react("✅");
     } catch (error) {
-      console.error("NPM search error:", error);
+      logError("NPM search error", error);
       await react("❌");
       return reply("Failed to search NPM. Please try again.");
     }
@@ -488,7 +488,7 @@ gmd(
       });
       await react("✅");
     } catch (error) {
-      console.error("Wattpad search error:", error);
+      logError("Wattpad search error", error);
       await react("❌");
       return reply("Failed to search Wattpad. Please try again.");
     }
@@ -592,7 +592,7 @@ gmd(
       );
       await react("✅");
     } catch (error) {
-      console.error("Spotify search error:", error);
+      logError("Spotify search error", error);
       await react("❌");
       return reply("Failed to search Spotify. Please try again.");
     }

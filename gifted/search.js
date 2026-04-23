@@ -107,7 +107,7 @@ gmd(
 
       await react("✅");
     } catch (error) {
-      console.error("Error during search process:", error);
+      logError("Error during search process", error);
       await react("❌");
       return reply("Oops! Something went wrong. Please try again.");
     }
@@ -241,7 +241,7 @@ gmd(
       );
       await react("✅");
     } catch (e) {
-      console.error("Error in shazam command:", e);
+      logError("Error in shazam command", e);
       await react("❌");
       if (e.message?.includes("empty media key")) {
         await reply("The media keys have expired — please send a fresh audio/video message.");
@@ -352,7 +352,7 @@ gmd(
       });
       await react("✅");
     } catch (error) {
-      console.error("Google search error:", error);
+      logError("Google search error", error);
       await react("❌");
       return reply("Failed to perform Google search. Please try again.");
     }
@@ -417,7 +417,7 @@ gmd(
 
       await react("✅");
     } catch (error) {
-      console.error("Lyrics search error:", error);
+      logError("Lyrics search error", error);
       await react("❌");
       return reply("Failed to get lyrics. Please try again.");
     }
@@ -511,7 +511,7 @@ gmd(
       });
       await react("✅");
     } catch (error) {
-      console.error("HappyMod search error:", error);
+      logError("HappyMod search error", error);
       await react("❌");
       return reply("Failed to search HappyMod. Please try again.");
     }
@@ -605,7 +605,7 @@ gmd(
       });
       await react("✅");
     } catch (error) {
-      console.error("APK Mirror search error:", error);
+      logError("APK Mirror search error", error);
       await react("❌");
       return reply("Failed to search APK Mirror. Please try again.");
     }
@@ -681,7 +681,7 @@ gmd(
 
       await react("✅");
     } catch (error) {
-      console.error("Sticker search error:", error);
+      logError("Sticker search error", error);
       await react("❌");
       return reply("Failed to search stickers. Please try again.");
     }

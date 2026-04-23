@@ -97,7 +97,7 @@ gmd(
 
             await react("✅");
         } catch (error) {
-            console.error("GitClone error:", error);
+            logError("GitClone error", error);
             await react("❌");
 
             if (error.message?.includes("404")) {
@@ -294,7 +294,7 @@ gmd(
 
                     await react("✅");
                 } catch (error) {
-                    console.error("Facebook download error:", error);
+                    logError("Facebook download error", error);
                     await react("❌");
                     await reply(
                         "Failed to download. Please try again.",
@@ -309,7 +309,7 @@ gmd(
                 300000,
             );
         } catch (error) {
-            console.error("Facebook API error:", error);
+            logError("Facebook API error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }
@@ -471,7 +471,7 @@ gmd(
 
                     await react("✅");
                 } catch (error) {
-                    console.error("TikTok download error:", error);
+                    logError("TikTok download error", error);
                     await react("❌");
                     await reply(
                         "Failed to download. Please try again.",
@@ -486,7 +486,7 @@ gmd(
                 300000,
             );
         } catch (error) {
-            console.error("TikTok API error:", error);
+            logError("TikTok API error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }
@@ -647,7 +647,7 @@ gmd(
 
                     await react("✅");
                 } catch (error) {
-                    console.error("Twitter download error:", error);
+                    logError("Twitter download error", error);
                     await react("❌");
                     await reply(
                         "Failed to download. Please try again.",
@@ -662,7 +662,7 @@ gmd(
                 300000,
             );
         } catch (error) {
-            console.error("Twitter API error:", error);
+            logError("Twitter API error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }
@@ -803,7 +803,7 @@ gmd(
 
                     await react("✅");
                 } catch (error) {
-                    console.error("Instagram download error:", error);
+                    logError("Instagram download error", error);
                     await react("❌");
                     await reply(
                         "Failed to download. Please try again.",
@@ -818,7 +818,7 @@ gmd(
                 300000,
             );
         } catch (error) {
-            console.error("Instagram API error:", error);
+            logError("Instagram API error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }
@@ -960,7 +960,7 @@ gmd(
 
                     await react("✅");
                 } catch (error) {
-                    console.error("Snack Video download error:", error);
+                    logError("Snack Video download error", error);
                     await react("❌");
                     await reply(
                         "Failed to download. Please try again.",
@@ -975,7 +975,7 @@ gmd(
                 300000,
             );
         } catch (error) {
-            console.error("Snack Video API error:", error);
+            logError("Snack Video API error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }

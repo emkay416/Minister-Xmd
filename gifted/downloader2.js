@@ -222,7 +222,7 @@ gmd(
 
                     await downloadAndSend(trackUrl, messageData);
                 } catch (error) {
-                    console.error("Spotify download error:", error);
+                    logError("Spotify download error", error);
                     await react("❌");
                     await reply(
                         "Failed to download. Please try again.",
@@ -237,7 +237,7 @@ gmd(
                 300000,
             );
         } catch (error) {
-            console.error("Spotify API error:", error);
+            logError("Spotify API error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }
@@ -382,7 +382,7 @@ gmd(
 
             await react("✅");
         } catch (error) {
-            console.error("Google Drive API error:", error);
+            logError("Google Drive API error", error);
             await react("❌");
             if (
                 error.response?.status === 404 ||
@@ -516,7 +516,7 @@ gmd(
 
             await react("✅");
         } catch (error) {
-            console.error("MediaFire API error:", error);
+            logError("MediaFire API error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }
@@ -598,7 +598,7 @@ gmd(
 
             await react("✅");
         } catch (error) {
-            console.error("APK download error:", error);
+            logError("APK download error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }
@@ -691,7 +691,7 @@ gmd(
 
             await react("✅");
         } catch (error) {
-            console.error("Pastebin API error:", error);
+            logError("Pastebin API error", error);
             await react("❌");
             return reply("An error occurred. Please try again.");
         }
@@ -845,7 +845,7 @@ gmd(
                     await react("✅");
                     Gifted.ev.off("messages.upsert", handleResponse);
                 } catch (error) {
-                    console.error("Error processing video:", error);
+                    logError("Error processing video", error);
                     await react("❌");
                     await reply(
                         "Failed to process video. Please try again.",
@@ -861,7 +861,7 @@ gmd(
                 Gifted.ev.off("messages.upsert", handleResponse);
             }, 300000);
         } catch (error) {
-            console.error("YouTube download error:", error);
+            logError("YouTube download error", error);
             await react("❌");
             return reply(
                 "An error occurred while processing your request. Please try again.",
