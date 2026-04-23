@@ -39,7 +39,7 @@ const DEFAULT_SETTINGS = {
     NEWSLETTER_JID: "120363325383451197@newsletter",
     GC_JID: "K0fYnrnFSarF5rKHfEPWgF",
     NEWSLETTER_URL: "https://whatsapp.com/channel/0029VamMdLZ8fewqWt6Ei51y",
-    BOT_REPO: "emkay416/minister-xmd",
+    BOT_REPO: "HencillCal/atasse",
     PACK_NAME: "𝐌𝐢𝐧𝐢𝐬𝐭𝐞𝐫-𝐗𝐦𝐝",
     PACK_AUTHOR: "𝐌𝐢𝐧𝐢𝐬𝐭𝐞𝐫 𝐓𝐄𝐂𝐇",
     SUDO_NUMBERS: "",

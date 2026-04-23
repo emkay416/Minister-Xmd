@@ -87,9 +87,16 @@ gmd(
                 process.exit(0);
             }, 2000);
         } catch (error) {
-            console.error("Update error:", error);
+            const status = error?.response?.status;
+            const msg = error?.response?.data?.message || error?.message || "Unknown error";
+            console.error(`Update error [${status || "no-status"}]: ${msg}`);
+            if (status === 404) {
+                return reply(
+                    `❌ Update Failed: GitHub repo \`${giftedRepo}\` was not found.\n\nUse *.setvar BOT_REPO owner/repo* to point to your actual repository.`,
+                );
+            }
             return reply(
-                "❌ Update Failed. Please try by Redeploying Manually.",
+                `❌ Update Failed: ${msg}\n\nPlease try by Redeploying Manually.`,
             );
         }
     },

@@ -597,12 +597,27 @@ gmd(
       ownerName,
       newsletterJid,
       giftedRepo,
+      reply,
     } = conText;
 
-    const response = await axios.get(
-      `https://api.github.com/repos/${giftedRepo}`,
-    );
-    const repoData = response.data;
+    let repoData;
+    try {
+      const response = await axios.get(
+        `https://api.github.com/repos/${giftedRepo}`,
+      );
+      repoData = response.data;
+    } catch (error) {
+      const status = error?.response?.status;
+      const msg = error?.response?.data?.message || error?.message || "Unknown error";
+      console.error(`Repo fetch error [${status || "no-status"}]: ${msg}`);
+      await react("❌");
+      if (status === 404) {
+        return reply(
+          `❌ GitHub repo \`${giftedRepo}\` was not found.\n\nUse *.setvar BOT_REPO owner/repo* to point to your actual repository.`,
+        );
+      }
+      return reply(`❌ Failed to fetch repo info: ${msg}`);
+    }
     const {
       full_name,
       name,
