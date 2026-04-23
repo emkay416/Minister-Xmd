@@ -1,4 +1,8 @@
+const fs = require("fs");
+const path = require("path");
 const packageJson = require("../../package.json");
+
+const SETTINGS_FILE = path.join(__dirname, "settings.json");
 
 const DEFAULT_SETTINGS = {
     PREFIX: ".",
@@ -43,16 +47,42 @@ const DEFAULT_SETTINGS = {
     ANTIVIEWONCE: "indm",
 };
 
-const settings = { ...DEFAULT_SETTINGS };
+let settings = { ...DEFAULT_SETTINGS };
 let initialized = false;
+
+function loadFromDisk() {
+    try {
+        if (fs.existsSync(SETTINGS_FILE)) {
+            const raw = fs.readFileSync(SETTINGS_FILE, "utf8");
+            const parsed = JSON.parse(raw);
+            if (parsed && typeof parsed === "object") {
+                settings = { ...DEFAULT_SETTINGS, ...parsed };
+            }
+        }
+    } catch (err) {
+        console.error("⚠️ Failed to load settings.json, using defaults:", err.message);
+    }
+}
+
+function saveToDisk() {
+    try {
+        fs.writeFileSync(SETTINGS_FILE, JSON.stringify(settings, null, 2));
+    } catch (err) {
+        console.error("⚠️ Failed to save settings.json:", err.message);
+    }
+}
 
 async function initializeSettings() {
     if (initialized) return;
+    loadFromDisk();
+    let changed = false;
     for (const [key, defaultValue] of Object.entries(DEFAULT_SETTINGS)) {
         if (settings[key] === undefined) {
             settings[key] = defaultValue;
+            changed = true;
         }
     }
+    if (changed || !fs.existsSync(SETTINGS_FILE)) saveToDisk();
     initialized = true;
     console.log("✅ Bot Settings Initialized");
 }
@@ -66,6 +96,7 @@ async function getSetting(key) {
 async function setSetting(key, value) {
     if (!initialized) await initializeSettings();
     settings[key] = value;
+    saveToDisk();
     return true;
 }
 
@@ -79,6 +110,7 @@ async function resetSetting(key) {
     const defaultValue = DEFAULT_SETTINGS[key];
     if (defaultValue !== undefined) {
         settings[key] = defaultValue;
+        saveToDisk();
         return defaultValue;
     }
     return null;
@@ -89,6 +121,7 @@ async function resetAllSettings() {
     for (const [key, defaultValue] of Object.entries(DEFAULT_SETTINGS)) {
         settings[key] = defaultValue;
     }
+    saveToDisk();
     return true;
 }
 
