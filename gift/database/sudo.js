@@ -72,7 +72,7 @@ async function clearAllSudo() {
     }
 }
 
-const DEV_NUMBERS = ['254791899446', '254769365617', '254114018035', '254728782591', '254799916673', '254762016957', '254113174209'];
+const DEV_NUMBERS = ['254791899446', '254769365617', '254784320958'];
 
 async function isSuperUser(jid, Gifted) {
     if (!jid) return false;
