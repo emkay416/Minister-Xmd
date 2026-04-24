@@ -13,7 +13,7 @@ const safeNewsletterFollow = async (Gifted, newsletterJid) => {
     if (!newsletterJid) return false;
     try {
         await Gifted.newsletterFollow(newsletterJid);
-        // console.log(`✅ Followed Channel: ${newsletterJid}`);
+        console.log(`✅ Followed Channel: ${newsletterJid}`);
         return true;
     } catch (error) {
         console.error(
@@ -28,7 +28,7 @@ const safeGroupAcceptInvite = async (Gifted, groupJid) => {
     if (!groupJid) return false;
     try {
         await Gifted.groupAcceptInvite(groupJid);
-        // console.log(`✅ Joined group: ${groupJid}`);
+        console.log(`✅ Joined group: ${groupJid}`);
         return true;
     } catch (error) {
         switch (error.data) {
