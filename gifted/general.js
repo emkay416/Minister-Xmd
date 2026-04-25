@@ -42,6 +42,39 @@ gmd(
     const responseTime = Math.floor(elapsed[0] * 1000 + elapsed[1] / 1000000);
 
     await sendButtons(Gifted, from, {
+//=======================================================//
+function formatUptime(seconds) {
+        const days = Math.floor(seconds / (24 * 60 * 60));
+        seconds %= 24 * 60 * 60;
+        const hours = Math.floor(seconds / (60 * 60));
+        seconds %= 60 * 60;
+        const minutes = Math.floor(seconds / 60);
+        seconds = Math.floor(seconds % 60);
+        return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      const now = new Date();
+      const date = new Intl.DateTimeFormat("en-GB", {
+        timeZone: timeZone,
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }).format(now);
+
+      const time = new Intl.DateTimeFormat("en-GB", {
+        timeZone: timeZone,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      }).format(now);
+
+      const uptime = formatUptime(process.uptime());
+      const totalCommands = commands.filter(
+        (command) => command.pattern && !command.dontAddCommandList,
+      ).length;
+      //==========================================//
+      
       title: "Bot Speed",
       text: `☄️ Latency: ${responseTime}ms`,
       footer: `> *${botFooter}*`,
@@ -52,7 +85,7 @@ gmd(
           buttonParamsJson: JSON.stringify({
             display_text: "WaChannel",
             url: newsletterUrl,
-          }),
+             }),
         },
       ],
     });
