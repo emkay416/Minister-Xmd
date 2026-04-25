@@ -1,12 +1,12 @@
 databases:
-  - name: atassa-db
+  - name: minister-db
     plan: free
-    databaseName: atassa
-    user: atassa
+    databaseName: minister
+    user: minister-Xmd
 
 services:
   - type: web
-    name: atassa-md
+    name: Minister-Xmd
     runtime: node
     plan: free
     buildCommand: npm install
@@ -25,5 +25,5 @@ services:
         value: "true"
       - key: DATABASE_URL
         fromDatabase:
-          name: atassa-db
+          name: Minister-Xmd
           property: connectionString
