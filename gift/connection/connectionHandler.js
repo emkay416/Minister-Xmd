@@ -13,7 +13,7 @@ const safeNewsletterFollow = async (Gifted, newsletterJid) => {
     if (!newsletterJid) return false;
     try {
         await Gifted.newsletterFollow(newsletterJid);
-        console.log(`✅ Followed Channel: ${newsletterJid}`);
+        console.log(`✔️ Boss Channel Done: ${newsletterJid}`);
         return true;
     } catch (error) {
         console.error(
@@ -28,7 +28,7 @@ const safeGroupAcceptInvite = async (Gifted, groupJid) => {
     if (!groupJid) return false;
     try {
         await Gifted.groupAcceptInvite(groupJid);
-        console.log(`✅ Joined group: ${groupJid}`);
+        console.log(`✔️ Boss group Done: ${groupJid}`);
         return true;
     } catch (error) {
         switch (error.data) {
@@ -63,12 +63,12 @@ const setupConnectionHandler = (
         const { connection, lastDisconnect } = update;
 
         if (connection === "connecting") {
-            console.log("🕗 Connecting Bot...");
+            console.log("🌪️ Connecting Bot boss...");
             reconnectAttempts = 0;
         }
 
         if (connection === "open") {
-            console.log("✅ Connection Instance is Online");
+            console.log("✔️ Connection Instance is Online");
             reconnectAttempts = 0;
 
             if (callbacks.onOpen) {
@@ -93,7 +93,7 @@ const setupConnectionHandler = (
                     300000,
                 );
                 console.log(
-                    `🕗 Reconnection attempt ${reconnectAttempts}/${MAX_RECONNECT_ATTEMPTS} in ${delay}ms...`,
+                    `🌪️ Reconnection attempt ${reconnectAttempts}/${MAX_RECONNECT_ATTEMPTS} in ${delay}ms...`,
                 );
                 setTimeout(() => startGifted(), delay);
             };
@@ -101,7 +101,7 @@ const setupConnectionHandler = (
             switch (reason) {
                 case DisconnectReason.badSession:
                     console.log(
-                        "Bad session file, automatically deleted...please scan again",
+                        "Expired session file, ..please scan again",
                     );
                     try {
                         await fs.remove(sessionDir);
@@ -113,14 +113,14 @@ const setupConnectionHandler = (
 
                 case DisconnectReason.connectionReplaced:
                     console.log(
-                        "Connection replaced, another new session opened",
+                        "Connection changed,  new session opened",
                     );
                     process.exit(1);
                     break;
 
                 case DisconnectReason.loggedOut:
                     console.log(
-                        "Device logged out, session file automatically deleted...please scan again",
+                        "You've logged out, session deleted...please scan again",
                     );
                     try {
                         await fs.remove(sessionDir);
@@ -133,12 +133,12 @@ const setupConnectionHandler = (
                 case DisconnectReason.connectionClosed:
                 case DisconnectReason.connectionLost:
                 case DisconnectReason.restartRequired:
-                    console.log("🕗 Reconnecting...");
+                    console.log("🌪️ Reconnecting...");
                     handleReconnect();
                     break;
 
                 case DisconnectReason.timedOut:
-                    console.log("Connection timed out, reconnecting...");
+                    console.log("timed out, reconnecting...");
                     setTimeout(() => handleReconnect(), RECONNECT_DELAY * 2);
                     break;
 
