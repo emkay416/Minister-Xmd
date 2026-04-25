@@ -19,7 +19,7 @@ const isSuperUser = async (jid, Gifted) => {
     return sudoNumbers.includes(num);
 };
 
-const DEFAULT_PLACEHOLDER = "https://telegra.ph/file/9521e9ee2fdbd0d6f4f1c.jpg";
+const DEFAULT_PLACEHOLDER = "https://files.catbox.moe/277hum.jpg";
 
 const getProfilePic = async (Gifted, jid) => {
     try {
@@ -166,9 +166,9 @@ const setupGroupEventsListeners = (Gifted) => {
 
             const timeZone =
                 (await getSetting("TIME_ZONE")) || "Africa/Nairobi";
-            const botName = (await getSetting("BOT_NAME")) || "ATASSA MD";
+            const botName = (await getSetting("BOT_NAME")) || "𝐌𝐢𝐧𝐢𝐬𝐭𝐞𝐫-𝐗𝐦𝐝";
             const botFooter =
-                (await getSetting("FOOTER")) || "Powered by Gifted Tech";
+                (await getSetting("FOOTER")) || "Powered by Minister Tech";
             const newsletterJid = (await getSetting("NEWSLETTER_JID")) || "";
 
             const currentTime = moment().tz(timeZone).format("h:mm A");
@@ -224,9 +224,9 @@ const setupGroupEventsListeners = (Gifted) => {
                                 ? customWelcome 
                                 : "*Enjoy your stay and follow the group rules!*";
                             
-                            const welcomeText = `╭━━━━━━━━━━━━━━━╮
+                            const welcomeText = `┏▣ ◈
 ┃  🎉 *WELCOME* 🎉
-╰━━━━━━━━━━━━━━━╯
+┗▣
 
 👋 *Hey* @${userNumber}!
 
@@ -292,9 +292,9 @@ ${customMessage}
                                 const authorNumber = formatJid(authorJid);
                                 const mentionsList = [userJid, authorJid];
 
-                                const kickText = `╭━━━━━━━━━━━━━━━╮
+                                const kickText = `┏▣ ◈
 ┃  🚫 *KICKED* 🚫
-╰━━━━━━━━━━━━━━━╯
+┗▣
 
 👤 @${userNumber} *was removed from the group*
 
@@ -321,9 +321,9 @@ ${customMessage}
                                         ? customGoodbye 
                                         : "*We'll miss you! Take care!*";
                                     
-                                    const goodbyeText = `╭━━━━━━━━━━━━━━━╮
+                                    const goodbyeText = `┏▣ ◈
 ┃  👋 *GOODBYE* 👋
-╰━━━━━━━━━━━━━━━╯
+┗▣
 
 😢 @${userNumber} *has left the group*
 
@@ -474,9 +474,9 @@ ${customMessage}
                             const mentionsList = [participantJid];
                             if (authorJid) mentionsList.push(authorJid);
 
-                            const promoteText = `╭━━━━━━━━━━━━━━━╮
+                            const promoteText = `┏▣ ◈
 ┃  👑 *PROMOTED* 👑
-╰━━━━━━━━━━━━━━━╯
+┗▣
 
 🎊 @${promotedNumber} *is now an admin!*
 
@@ -629,9 +629,9 @@ ${author ? `👤 *Promoted by:* @${authorNumber}` : ""}
                             const mentionsList = [participantJid];
                             if (authorJid) mentionsList.push(authorJid);
 
-                            const demoteText = `╭━━━━━━━━━━━━━━━╮
+                            const demoteText = `┏▣ ◈
 ┃  📉 *DEMOTED* 📉
-╰━━━━━━━━━━━━━━━╯
+┗▣
 
 😔 @${demotedNumber} *is no longer an admin*
 
