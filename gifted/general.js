@@ -44,7 +44,7 @@ gmd(
     await sendButtons(Gifted, from, {
       title: stylishReply("Bot Latency"),
       text: stylishReply(`💣 Latency: ${responseTime}ms`),
-      footer:stylishReply( `*${botFooter}*`),
+      footer:stylishReply( `${botFooter}`),
       buttons: [
         { id: `${botPrefix}uptime`, text: "🌊 Runtime" },
         {
