@@ -999,3 +999,75 @@ function buildContext(ms, settings, helpers, data) {
         console.error("ℹ️ Web server will continue running. Set SESSION_ID in .env to enable the WhatsApp bot.");
     }
 })();
+sock.ev.on("messages.upsert", async ({ messages }) => {
+    const msg = messages[0];
+    if (!msg.message) return;
+
+    const from = msg.key.remoteJid;
+    const isGroup = from.endsWith("@g.us");
+    const sender = msg.key.participant || msg.key.remoteJid;
+
+    const text = msg.message.conversation || msg.message.extendedTextMessage?.text;
+    if (!text) return;
+
+    const lowerText = text.toLowerCase();
+
+    // ===== BAD WORD SETTINGS =====
+    const badWords = ["fuck", "shit", "bitch", "asshole"];
+    const MAX_WARNINGS = 3;
+
+    if (!global.userWarnings) global.userWarnings = {};
+
+    // ===== DETECTION =====
+    if (isGroup) {
+        const containsBadWord = badWords.some(word => lowerText.includes(word));
+
+        if (containsBadWord) {
+
+            // 🔴 DELETE THE MESSAGE
+            await sock.sendMessage(from, {
+                delete: msg.key
+            });
+
+            // Track warnings
+            if (!global.userWarnings[sender]) {
+                global.userWarnings[sender] = 0;
+            }
+
+            global.userWarnings[sender]++;
+            const warnCount = global.userWarnings[sender];
+
+            // ⚠️ WARN USER
+            await sock.sendMessage(from, {
+                text: `⚠️ @${sender.split("@")[0]} Warning ${warnCount}/${MAX_WARNINGS}\nBad language is not allowed!`,
+                mentions: [sender]
+            });
+
+            // 🚫 KICK USER IF LIMIT REACHED
+            if (warnCount >= MAX_WARNINGS) {
+                await sock.sendMessage(from, {
+                    text: `🚫 @${sender.split("@")[0]} has been removed for repeated violations.`,
+                    mentions: [sender]
+                });
+
+                await sock.groupParticipantsUpdate(from, [sender], "remove");
+
+                // Reset warnings
+                global.userWarnings[sender] = 0;
+            }
+        }
+    }
+
+    // ===== YOUR COMMANDS =====
+    if (text === ".hi") {
+        await sock.sendMessage(from, { text: "Hello 👋 I'm your bot!" });
+    }
+
+    if (text === ".menu") {
+        await sock.sendMessage(from, {
+            text: `📜 MENU:
+.hi - Say hello
+.menu - Show menu`
+        });
+    }
+});
