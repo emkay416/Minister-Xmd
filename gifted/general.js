@@ -18,7 +18,7 @@ gmd(
   {
     pattern: "ping",
     aliases: ["pi", "p"],
-    react: "☄️",
+    react: "💣",
     category: "general",
     description: "Check bot response speed",
   },
@@ -43,8 +43,8 @@ gmd(
 
     await sendButtons(Gifted, from, {
       title: stylishReply("Bot Speed"),
-      text: `☄️ Latency: ${responseTime}ms`,
-      footer: `> *${botFooter}*`,
+      text: stylishReply(`💣 Latency: ${responseTime}ms`),
+      footer:stylishReply( `*${botFooter}*`),
       buttons: [
         { id: `${botPrefix}uptime`, text: "⏱️ Uptime" },
         {
@@ -69,7 +69,7 @@ gmd(
         }
       }
     }, { quoted: mek });*/
-    await react("✅");
+    await react("💥");
   },
 );
 
@@ -189,15 +189,15 @@ gmd(
 *🧑‍💻 :* ${monospace(botName)} Iꜱ Aᴠᴀɪʟᴀʙʟᴇ
 
 ┏▣ ◈ *ALL MENU* ◈
-│➽ Lɪꜱᴛ
-│➽ Cᴀᴛᴇɢᴏʀʏ
-│➽ Hᴇʟᴘ
-│➽ Aʟɪᴠᴇ
-│➽ Uᴘᴛɪᴍᴇ
-│➽ Wᴇᴀᴛʜᴇʀ
-│➽ Lɪɴᴋ
-│➽ Cᴘᴜ
-│➽ Rᴇᴘᴏꜱɪᴛᴏʀʏ
+│*︎ Lɪꜱᴛ
+│*︎ Cᴀᴛᴇɢᴏʀʏ
+│*︎ Hᴇʟᴘ
+│*︎ Aʟɪᴠᴇ
+│*︎ Uᴘᴛɪᴍᴇ
+│*︎ Wᴇᴀᴛʜᴇʀ
+│*︎ Lɪɴᴋ
+│*︎ Cᴘᴜ
+│*︎ Rᴇᴘᴏꜱɪᴛᴏʀʏ
 ┗▣`;
 
       const giftedMess = {
@@ -324,7 +324,7 @@ gmd(
   {
     pattern: "menu",
     aliases: ["help", "men", "allmenu"],
-    react: "🪀",
+    react: "🗯",
     category: "general",
     description: "Fetch bot main menu",
   },
@@ -397,12 +397,9 @@ gmd(
       let header = `┏▣ ◈ *${monospace(botName)}* ◈
 ┃ *Mᴏᴅᴇ:*  ${monospace(botMode)}
 ┃ *Pʀᴇғɪx:*  [ ${monospace(botPrefix)} ]
-┃ *Usᴇʀ:*  ${monospace(pushName)}
 ┃ *Pʟᴜɢɪɴs:*  ${monospace(totalCommands.toString())}
-┃ *Tɪᴍᴇ Zᴏɴᴇ:*  ${monospace(timeZone)}
 ┃ *Dᴀᴛᴇ Tᴏᴅᴀʏ:*  ${monospace(date)}
 ┃ *Tɪᴍᴇ Nᴏᴡ:*  ${monospace(time)}
-┃ *Uᴘᴛɪᴍᴇ:*  ${monospace(uptime)}
 ┗▣\n${readmore}\n`;
 
       const formatCategory = (category, gmds) => {
@@ -410,7 +407,7 @@ gmd(
         const body = gmds
           .map((gmd) => {
             const prefix = gmd.isBody ? "" : botPrefix;
-            return `│➽ ${monospace(prefix + gmd.pattern)}`;
+            return `│*︎ ${monospace(prefix + gmd.pattern)}`;
           })
           .join("\n");
         const footer = `┗▣\n`;
@@ -437,7 +434,7 @@ gmd(
         },
       };
       await Gifted.sendMessage(from, giftedMess, { quoted: mek });
-      await react("✅");
+      await react("🗯");
     } catch (e) {
       console.error(e);
       reply(`${e}`);
@@ -449,7 +446,7 @@ gmd(
   {
     pattern: "return",
     aliases: ["details", "det", "ret"],
-    react: "⚡",
+    react: "💣",
     category: "owner",
     description:
       "Displays the full raw quoted message using Baileys structure.",
@@ -520,7 +517,7 @@ gmd(
         },
         { quoted: mek }
       );*/
-        await react("✅");
+        await react("🗯");
       }
     } catch (error) {
       logError("Error processing quoted message", error);
@@ -557,10 +554,10 @@ gmd(
 
     await sendButtons(Gifted, from, {
       title: "",
-      text: `⏱️ Uptime: ${days}d ${hours}h ${minutes}m ${seconds}s`,
+      text: stylishReply(`⏱️ Uptime: ${days}d ${hours}h ${minutes}m ${seconds}s`),
       footer: `> *${botFooter}*`,
       buttons: [
-        { id: `${botPrefix}ping`, text: "⚡ Ping" },
+        { id: `${botPrefix}ping`, text: stylishReply("💣 Latency") },
         {
           name: "cta_url",
           buttonParamsJson: JSON.stringify({
@@ -570,7 +567,7 @@ gmd(
         },
       ],
     });
-    await react("✅");
+    await react("🗯");
   },
 );
 
