@@ -420,14 +420,14 @@ async function loadSession() {
         }
 
         if (!config.SESSION_ID || typeof config.SESSION_ID !== 'string') {
-            throw new Error("❌ SESSION_ID is missing or invalid");
+            throw new Error("⚠️ SESSION_ID is missing or invalid");
         }
 
         let sessionId = config.SESSION_ID;
         const [headerCheck, b64Check] = sessionId.split('~');
 
         if (headerCheck !== "Minister" || !b64Check) {
-            throw new Error("❌ Invalid session format. Expected 'Minister~.....'");
+            throw new Error("⚠️ Invalid session format. Expected 'Minister~.....'");
         }
 
         if (!b64Check.startsWith('H4sI')) {
@@ -435,7 +435,7 @@ async function loadSession() {
             const res = await axios.get(serverUrl, { timeout: 15000 });
             const fetched = (res.data || '').toString().trim();
             if (!fetched.startsWith('Minister~H4sI')) {
-                throw new Error("❌ Session server returned invalid data");
+                throw new Error("⚠️ Session server returned invalid data");
             }
             sessionId = fetched;
         }
@@ -443,7 +443,7 @@ async function loadSession() {
         const [header, b64data] = sessionId.split('~');
 
         if (header !== "Minister" || !b64data) {
-            throw new Error("❌ Invalid session format. Expected 'Minister~.....'");
+            throw new Error("⚠️ Invalid session format. Expected 'Minister~.....'");
         }
 
         const cleanB64 = b64data.replace('...', '');
@@ -455,10 +455,10 @@ async function loadSession() {
         }
 
         fs.writeFileSync(sessionPath, decompressedData, "utf8");
-        console.log("✅ Session File Loaded");
+        console.log("✔️ Session File Loaded");
 
     } catch (e) {
-        console.error("❌ Session Error:", e.message);
+        console.error("⚠️ Session Error:", e.message);
         throw e;
     }
 }

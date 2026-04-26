@@ -43,14 +43,14 @@ gmd(
             conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply(
                 `Please provide a GitHub repository link.\n\n*Usage:* .gitclone https://github.com/user/repo`,
             );
         }
 
         if (!gitRepoRegex.test(q)) {
-            await react("❌");
+            await react("⚠️");
             return reply(
                 "Invalid GitHub link format. Please provide a valid GitHub repository URL.",
             );
@@ -67,7 +67,7 @@ gmd(
 
             const repoResponse = await axios.get(apiUrl);
             if (!repoResponse.data) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Repository not found or access denied. Make sure the repository is public.",
                 );
@@ -96,10 +96,10 @@ gmd(
                 { quoted: mek },
             );
 
-            await react("✅");
+            await react("✔️");
         } catch (error) {
             logError("GitClone error", error);
-            await react("❌");
+            await react("⚠️");
 
             if (error.message?.includes("404")) {
                 return reply("Repository not found.");
@@ -139,12 +139,12 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a Facebook video URL");
         }
 
         if (!q.includes("facebook.com") && !q.includes("fb.watch")) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a valid Facebook URL");
         }
 
@@ -153,7 +153,7 @@ gmd(
             const response = await axios.get(apiUrl, { timeout: 60000 });
 
             if (!response.data?.success || !response.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch video. Please check the URL and try again.",
                 );
@@ -196,7 +196,7 @@ gmd(
                     if (selectedButtonId.startsWith("fb_audio")) {
                         const sourceVideo = hd_video || sd_video;
                         if (!sourceVideo) {
-                            await react("❌");
+                            await react("⚠️");
                             return reply(
                                 "No video available for audio extraction.",
                                 messageData,
@@ -205,7 +205,7 @@ gmd(
 
                         const videoBuffer = await gmdBuffer(sourceVideo);
                         if (!videoBuffer || videoBuffer instanceof Error || !Buffer.isBuffer(videoBuffer)) {
-                            await react("❌");
+                            await react("⚠️");
                             return reply(
                                 "Failed to download video for audio extraction. Please try again.",
                                 messageData,
@@ -215,7 +215,7 @@ gmd(
                         try {
                             audioBuffer = await toAudio(videoBuffer);
                         } catch (audioErr) {
-                            await react("❌");
+                            await react("⚠️");
                             const errMsg = audioErr.message || String(audioErr);
                             if (errMsg.includes('no audio')) {
                                 return reply("This video has no audio track to extract.", messageData);
@@ -223,7 +223,7 @@ gmd(
                             return reply("Failed to convert video to audio: " + errMsg, messageData);
                         }
                         if (!audioBuffer || !Buffer.isBuffer(audioBuffer)) {
-                            await react("❌");
+                            await react("⚠️");
                             return reply(
                                 "Failed to convert video to audio. The video format may not be supported.",
                                 messageData,
@@ -259,7 +259,7 @@ gmd(
                             : sd_video;
 
                         if (!selectedVideoUrl) {
-                            await react("❌");
+                            await react("⚠️");
                             return reply(
                                 "Selected quality not available.",
                                 messageData,
@@ -293,10 +293,10 @@ gmd(
                         }
                     }
 
-                    await react("✅");
+                    await react("✔️");
                 } catch (error) {
                     logError("Facebook download error", error);
-                    await react("❌");
+                    await react("⚠️");
                     await reply(
                         "Failed to download. Please try again.",
                         messageData,
@@ -311,7 +311,7 @@ gmd(
             );
         } catch (error) {
             logError("Facebook API error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },
@@ -342,12 +342,12 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a TikTok URL");
         }
 
         if (!q.includes("tiktok.com")) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a valid TikTok URL");
         }
 
@@ -373,7 +373,7 @@ gmd(
             ).catch(() => null);
 
             if (!result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch TikTok video. Please try again later.",
                 );
@@ -470,10 +470,10 @@ gmd(
                         }
                     }
 
-                    await react("✅");
+                    await react("✔️");
                 } catch (error) {
                     logError("TikTok download error", error);
-                    await react("❌");
+                    await react("⚠️");
                     await reply(
                         "Failed to download. Please try again.",
                         messageData,
@@ -488,7 +488,7 @@ gmd(
             );
         } catch (error) {
             logError("TikTok API error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },
@@ -519,12 +519,12 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a Twitter/X URL");
         }
 
         if (!q.includes("twitter.com") && !q.includes("x.com")) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a valid Twitter/X URL");
         }
 
@@ -533,7 +533,7 @@ gmd(
             const response = await axios.get(apiUrl, { timeout: 60000 });
 
             if (!response.data?.success || !response.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch video. Please check the URL and try again.",
                 );
@@ -542,7 +542,7 @@ gmd(
             const { thumbnail, videoUrls } = response.data.result;
 
             if (!videoUrls || videoUrls.length === 0) {
-                await react("❌");
+                await react("⚠️");
                 return reply("No video found in this tweet.");
             }
 
@@ -578,7 +578,7 @@ gmd(
                     if (selectedButtonId.startsWith("tw_audio")) {
                         const bestVideo = videoUrls[0]?.url;
                         if (!bestVideo) {
-                            await react("❌");
+                            await react("⚠️");
                             return reply(
                                 "No video available for audio extraction.",
                                 messageData,
@@ -614,7 +614,7 @@ gmd(
                         const videoUrl = videoUrls[index]?.url;
 
                         if (!videoUrl) {
-                            await react("❌");
+                            await react("⚠️");
                             return reply(
                                 "Selected quality not available.",
                                 messageData,
@@ -646,10 +646,10 @@ gmd(
                         }
                     }
 
-                    await react("✅");
+                    await react("✔️");
                 } catch (error) {
                     logError("Twitter download error", error);
-                    await react("❌");
+                    await react("⚠️");
                     await reply(
                         "Failed to download. Please try again.",
                         messageData,
@@ -664,7 +664,7 @@ gmd(
             );
         } catch (error) {
             logError("Twitter API error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },
@@ -695,12 +695,12 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide an Instagram URL");
         }
 
         if (!q.includes("instagram.com")) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a valid Instagram URL");
         }
 
@@ -709,7 +709,7 @@ gmd(
             const response = await axios.get(apiUrl, { timeout: 60000 });
 
             if (!response.data?.success || !response.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch content. Please check the URL and try again.",
                 );
@@ -718,7 +718,7 @@ gmd(
             const { thumbnail, download_url } = response.data.result;
 
             if (!download_url) {
-                await react("❌");
+                await react("⚠️");
                 return reply("No downloadable content found.");
             }
 
@@ -802,10 +802,10 @@ gmd(
                         }
                     }
 
-                    await react("✅");
+                    await react("✔️");
                 } catch (error) {
                     logError("Instagram download error", error);
-                    await react("❌");
+                    await react("⚠️");
                     await reply(
                         "Failed to download. Please try again.",
                         messageData,
@@ -820,7 +820,7 @@ gmd(
             );
         } catch (error) {
             logError("Instagram API error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },
@@ -851,12 +851,12 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a Snack Video URL");
         }
 
         if (!q.includes("snackvideo.com")) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a valid Snack Video URL");
         }
 
@@ -865,7 +865,7 @@ gmd(
             const response = await axios.get(apiUrl, { timeout: 60000 });
 
             if (!response.data?.success || !response.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch video. Please check the URL and try again.",
                 );
@@ -875,7 +875,7 @@ gmd(
                 response.data.result;
 
             if (!media) {
-                await react("❌");
+                await react("⚠️");
                 return reply("No video found.");
             }
 
@@ -959,10 +959,10 @@ gmd(
                         }
                     }
 
-                    await react("✅");
+                    await react("✔️");
                 } catch (error) {
                     logError("Snack Video download error", error);
-                    await react("❌");
+                    await react("⚠️");
                     await reply(
                         "Failed to download. Please try again.",
                         messageData,
@@ -977,7 +977,7 @@ gmd(
             );
         } catch (error) {
             logError("Snack Video API error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },

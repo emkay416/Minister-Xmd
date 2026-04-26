@@ -194,7 +194,7 @@ async function createLogoCommand(config) {
       } = conText;
 
       if (!q) {
-        await react("❌");
+        await react("⚠️");
         return reply(
           `Please provide text for the logo.\n\nUsage: .${config.pattern} <text>\nExample: .${config.pattern} ${pushname || "Gifted Tech"}`,
         );
@@ -207,7 +207,7 @@ async function createLogoCommand(config) {
         const res = await axios.get(apiUrl, { timeout: 60000 });
 
         if (!res.data || !res.data.success || !res.data.result?.image_url) {
-          await react("❌");
+          await react("⚠️");
           return reply("Failed to generate logo. Please try again.");
         }
 
@@ -215,7 +215,7 @@ async function createLogoCommand(config) {
         const imageBuffer = await gmdBuffer(imageUrl);
 
         if (!imageBuffer || !Buffer.isBuffer(imageBuffer)) {
-          await react("❌");
+          await react("⚠️");
           return reply("Failed to download the generated logo.");
         }
 
@@ -228,10 +228,10 @@ async function createLogoCommand(config) {
           { quoted: mek },
         );
 
-        await react("✅");
+        await react("✔️");
       } catch (e) {
         console.error(`Error in ${config.pattern} command:`, e.message);
-        await react("❌");
+        await react("⚠️");
         await reply("Failed to generate logo. Please try again later.");
       }
     },
@@ -258,6 +258,6 @@ gmd(
     await reply(
       `🎨 *${botName} LOGO MAKER*\n\n${logoList}\n\n📝 *Usage:* ${botPrefix}commandname <your text>\n📌 *Example:* ${botPrefix}glossysilver Gifted Tech\n\n> ${botCaption}`,
     );
-    await react("✅");
+    await react("✔️");
   },
 );

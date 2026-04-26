@@ -53,7 +53,7 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply(
                 "Please provide a Spotify URL or song name\n\n*Examples:*\n.spotify https://open.spotify.com/track/...\n.spotify The Spectre Alan Walker",
             );
@@ -79,7 +79,7 @@ gmd(
             ).catch(() => null);
 
             if (!result || !result.download_url) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch track. Please try again.",
                     quotedMsg,
@@ -113,7 +113,7 @@ gmd(
                 );
             }
 
-            await react("✅");
+            await react("✔️");
         };
 
         try {
@@ -129,7 +129,7 @@ gmd(
             const data = searchResponse.data;
 
             if (!data?.success || !data?.results) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Search failed. Please try with a direct Spotify URL.",
                 );
@@ -138,7 +138,7 @@ gmd(
             const results = data.results;
 
             if (results?.status === false) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Search service temporarily unavailable. Please try with a direct Spotify URL.",
                 );
@@ -157,7 +157,7 @@ gmd(
             }
 
             if (tracks.length === 0) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "No Spotify tracks found. Try a different query or provide a direct Spotify URL.",
                 );
@@ -217,14 +217,14 @@ gmd(
                         selectedTrack?.spotify_url;
 
                     if (!trackUrl) {
-                        await react("❌");
+                        await react("⚠️");
                         return reply("Track URL not available.", messageData);
                     }
 
                     await downloadAndSend(trackUrl, messageData);
                 } catch (error) {
                     logError("Spotify download error", error);
-                    await react("❌");
+                    await react("⚠️");
                     await reply(
                         "Failed to download. Please try again.",
                         messageData,
@@ -239,7 +239,7 @@ gmd(
             );
         } catch (error) {
             logError("Spotify API error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },
@@ -270,12 +270,12 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a Google Drive URL");
         }
 
         if (!q.includes("drive.google.com")) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a valid Google Drive URL");
         }
 
@@ -284,7 +284,7 @@ gmd(
             const response = await axios.get(apiUrl, { timeout: 60000 });
 
             if (!response.data?.success || !response.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch file. Please check the URL and ensure the file is publicly accessible.",
                 );
@@ -293,7 +293,7 @@ gmd(
             const { name, download_url } = response.data.result;
 
             if (!download_url) {
-                await react("❌");
+                await react("⚠️");
                 return reply("No download URL available.");
             }
 
@@ -311,7 +311,7 @@ gmd(
                 }
             } catch (headErr) {
                 if (headErr.response?.status === 404) {
-                    await react("❌");
+                    await react("⚠️");
                     return reply(
                         "File not found. The file may have been deleted or is not publicly accessible.",
                     );
@@ -326,7 +326,7 @@ gmd(
                     dlErr.response?.status === 404 ||
                     dlErr.message?.includes("404")
                 ) {
-                    await react("❌");
+                    await react("⚠️");
                     return reply(
                         "File not found. The file may have been deleted or is not publicly accessible.",
                     );
@@ -381,10 +381,10 @@ gmd(
                 );
             }
 
-            await react("✅");
+            await react("✔️");
         } catch (error) {
             logError("Google Drive API error", error);
-            await react("❌");
+            await react("⚠️");
             if (
                 error.response?.status === 404 ||
                 error.message?.includes("404")
@@ -422,12 +422,12 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a MediaFire URL");
         }
 
         if (!q.includes("mediafire.com")) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a valid MediaFire URL");
         }
 
@@ -436,7 +436,7 @@ gmd(
             const response = await axios.get(apiUrl, { timeout: 60000 });
 
             if (!response.data?.success || !response.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch file. Please check the URL and try again.",
                 );
@@ -446,7 +446,7 @@ gmd(
                 response.data.result;
 
             if (!downloadUrl) {
-                await react("❌");
+                await react("⚠️");
                 return reply("No download URL available.");
             }
 
@@ -515,10 +515,10 @@ gmd(
                 );
             }
 
-            await react("✅");
+            await react("✔️");
         } catch (error) {
             logError("MediaFire API error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },
@@ -546,7 +546,7 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply(
                 "Please provide an app name\n\n*Example:* .apk WhatsApp",
             );
@@ -559,7 +559,7 @@ gmd(
             const response = await axios.get(apiUrl, { timeout: 60000 });
 
             if (!response.data?.success || !response.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply("App not found. Please try a different name.");
             }
 
@@ -567,7 +567,7 @@ gmd(
                 response.data.result;
 
             if (!download_url) {
-                await react("❌");
+                await react("⚠️");
                 return reply("No download URL available for this app.");
             }
 
@@ -597,10 +597,10 @@ gmd(
                 { quoted: mek },
             );
 
-            await react("✅");
+            await react("✔️");
         } catch (error) {
             logError("APK download error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },
@@ -627,14 +627,14 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply(
                 "Please provide a Pastebin URL\n\n*Example:* .pastebin https://pastebin.com/xxxxxx",
             );
         }
 
         if (!q.includes("pastebin.com")) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a valid Pastebin URL");
         }
 
@@ -645,7 +645,7 @@ gmd(
             const response = await axios.get(apiUrl, { timeout: 30000 });
 
             if (!response.data?.success || !response.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch paste. Please check the URL and try again.",
                 );
@@ -690,10 +690,10 @@ gmd(
                 );
             }
 
-            await react("✅");
+            await react("✔️");
         } catch (error) {
             logError("Pastebin API error", error);
-            await react("❌");
+            await react("⚠️");
             return reply("An error occurred. Please try again.");
         }
     },
@@ -727,7 +727,7 @@ gmd(
         } = conText;
 
         if (!q) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please provide a YouTube URL");
         }
 
@@ -811,7 +811,7 @@ gmd(
                     const videoBuffer = await gmdBuffer(downloadUrl);
 
                     if (videoBuffer instanceof Error) {
-                        await react("❌");
+                        await react("⚠️");
                         return reply(
                             "Failed to download the video.",
                             messageData,
@@ -843,11 +843,11 @@ gmd(
                         );
                     }
 
-                    await react("✅");
+                    await react("✔️");
                     Gifted.ev.off("messages.upsert", handleResponse);
                 } catch (error) {
                     logError("Error processing video", error);
-                    await react("❌");
+                    await react("⚠️");
                     await reply(
                         "Failed to process video. Please try again.",
                         messageData,
@@ -863,7 +863,7 @@ gmd(
             }, 300000);
         } catch (error) {
             logError("YouTube download error", error);
-            await react("❌");
+            await react("⚠️");
             return reply(
                 "An error occurred while processing your request. Please try again.",
             );

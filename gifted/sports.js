@@ -77,9 +77,9 @@ gmd(
       });
 
       if (!data?.status || !data?.result?.length) {
-        await react("❌");
+        await react("⚠️");
         return reply(
-          "❌ No betting tips available right now. Try again later.",
+          "⚠️ No betting tips available right now. Try again later.",
         );
       }
 
@@ -104,7 +104,7 @@ gmd(
         }
 
         if (match.predictions?.over_2_5) {
-          txt += `┃ ⚽ *O2.5:* ✅${match.predictions.over_2_5.yes}%\n`;
+          txt += `┃ ⚽ *O2.5:* ✔️${match.predictions.over_2_5.yes}%\n`;
         }
 
         if (match.predictions?.bothTeamToScore) {
@@ -129,11 +129,11 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (err) {
       console.error("surebet error:", err);
-      await react("❌");
-      reply("❌ Failed to fetch betting tips. Try again later.");
+      await react("⚠️");
+      reply("⚠️ Failed to fetch betting tips. Try again later.");
     }
   },
 );
@@ -156,7 +156,7 @@ gmd(
 │ _Reply with number_
 ├━━━━━━━━━━━┤
 │ 1. 🔴 Live
-│ 2. ✅ Finished
+│ 2. ✔️ Finished
 │ 3. ⏰ Upcoming
 ╰━━━━━━━━━━━╯`;
 
@@ -186,7 +186,7 @@ gmd(
       const choice = responseText?.trim();
       const optionMap = {
         1: { name: "Live", emoji: "🔴", filter: "live" },
-        2: { name: "Finished", emoji: "✅", filter: "finished" },
+        2: { name: "Finished", emoji: "✔️", filter: "finished" },
         3: { name: "Upcoming", emoji: "⏰", filter: "upcoming" },
       };
 
@@ -194,7 +194,7 @@ gmd(
         return Gifted.sendMessage(
           chatId,
           {
-            text: "❌ Invalid option. Reply with 1, 2, or 3.",
+            text: "⚠️ Invalid option. Reply with 1, 2, or 3.",
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -217,7 +217,7 @@ gmd(
           return Gifted.sendMessage(
             chatId,
             {
-              text: `❌ No match data available at the moment.`,
+              text: `⚠️ No match data available at the moment.`,
               contextInfo: await getContextInfo(),
             },
             { quoted: msg },
@@ -294,7 +294,7 @@ gmd(
         await Gifted.sendMessage(
           chatId,
           {
-            text: `❌ Error fetching matches: ${err.message}`,
+            text: `⚠️ Error fetching matches: ${err.message}`,
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -327,8 +327,8 @@ gmd(
       const items = res.data?.result?.data?.items;
 
       if (!Array.isArray(items) || items.length === 0) {
-        await react("❌");
-        return reply("❌ No football news available at the moment.");
+        await react("⚠️");
+        return reply("⚠️ No football news available at the moment.");
       }
 
       const news = items.slice(0, 8);
@@ -388,11 +388,11 @@ gmd(
       await Gifted.relayMessage(from, message.message, {
         messageId: message.key.id,
       });
-      await react("✅");
+      await react("✔️");
     } catch (err) {
       console.error("sportnews error:", err);
-      await react("❌");
-      reply("❌ Failed to fetch football news.");
+      await react("⚠️");
+      reply("⚠️ Failed to fetch football news.");
     }
   },
 );
@@ -441,7 +441,7 @@ gmd(
         return Gifted.sendMessage(
           chatId,
           {
-            text: "❌ Invalid option. Reply with a number between 1 and 8.",
+            text: "⚠️ Invalid option. Reply with a number between 1 and 8.",
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -463,7 +463,7 @@ gmd(
           return Gifted.sendMessage(
             chatId,
             {
-              text: `❌ Failed to fetch ${league.name} scorers.`,
+              text: `⚠️ Failed to fetch ${league.name} scorers.`,
               contextInfo: await getContextInfo(),
             },
             { quoted: msg },
@@ -508,7 +508,7 @@ gmd(
         await Gifted.sendMessage(
           chatId,
           {
-            text: `❌ Error: ${err.message}`,
+            text: `⚠️ Error: ${err.message}`,
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -565,7 +565,7 @@ gmd(
         return Gifted.sendMessage(
           chatId,
           {
-            text: "❌ Invalid option. Reply with 1-8.",
+            text: "⚠️ Invalid option. Reply with 1-8.",
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -587,7 +587,7 @@ gmd(
           return Gifted.sendMessage(
             chatId,
             {
-              text: `❌ Failed to fetch ${league.name} standings.`,
+              text: `⚠️ Failed to fetch ${league.name} standings.`,
               contextInfo: await getContextInfo(),
             },
             { quoted: msg },
@@ -633,7 +633,7 @@ gmd(
         await Gifted.sendMessage(
           chatId,
           {
-            text: `❌ Error: ${err.message}`,
+            text: `⚠️ Error: ${err.message}`,
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -690,7 +690,7 @@ gmd(
         return Gifted.sendMessage(
           chatId,
           {
-            text: "❌ Invalid option. Reply with 1-8.",
+            text: "⚠️ Invalid option. Reply with 1-8.",
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -712,7 +712,7 @@ gmd(
           return Gifted.sendMessage(
             chatId,
             {
-              text: `❌ No upcoming ${league.name} fixtures found.`,
+              text: `⚠️ No upcoming ${league.name} fixtures found.`,
               contextInfo: await getContextInfo(),
             },
             { quoted: msg },
@@ -748,7 +748,7 @@ gmd(
         await Gifted.sendMessage(
           chatId,
           {
-            text: `❌ Error: ${err.message}`,
+            text: `⚠️ Error: ${err.message}`,
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -805,7 +805,7 @@ gmd(
         return Gifted.sendMessage(
           chatId,
           {
-            text: "❌ Invalid option. Reply with 1-8.",
+            text: "⚠️ Invalid option. Reply with 1-8.",
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -827,7 +827,7 @@ gmd(
           return Gifted.sendMessage(
             chatId,
             {
-              text: `❌ No match history found for ${league.name}.`,
+              text: `⚠️ No match history found for ${league.name}.`,
               contextInfo: await getContextInfo(),
             },
             { quoted: msg },
@@ -866,7 +866,7 @@ gmd(
         await Gifted.sendMessage(
           chatId,
           {
-            text: `❌ Error: ${err.message}`,
+            text: `⚠️ Error: ${err.message}`,
             contextInfo: await getContextInfo(),
           },
           { quoted: msg },
@@ -902,7 +902,7 @@ function convertToUserTime(timeStr, dateStr, userTimeZone) {
 }
 
 function getMatchIcon(status) {
-  const icons = { HT: "⏸️", FT: "✅", Pen: "✅", "1T": "🔴", "2T": "🔴" };
+  const icons = { HT: "⏸️", FT: "✔️", Pen: "✔️", "1T": "🔴", "2T": "🔴" };
   return icons[status] || "⏰";
 }
 

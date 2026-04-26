@@ -41,7 +41,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide audio url");
     }
 
@@ -49,7 +49,7 @@ gmd(
       const buffer = await gmdBuffer(q);
       const convertedBuffer = await formatAudio(buffer);
       if (buffer instanceof Error) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to download the audio file.");
       }
       await Gifted.sendMessage(
@@ -61,10 +61,10 @@ gmd(
         },
         { quoted: mek },
       );
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Error during download process", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Oops! Something went wrong. Please try again.");
     }
   },
@@ -83,7 +83,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide video url");
     }
 
@@ -91,7 +91,7 @@ gmd(
       const buffer = await gmdBuffer(q);
     //  const convertedBuffer = await formatVideo(buffer);
       if (buffer instanceof Error) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to download the video file.");
       }
       await Gifted.sendMessage(
@@ -104,10 +104,10 @@ gmd(
         },
         { quoted: mek },
       );
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Error during download process", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Oops! Something went wrong. Please try again.");
     }
   },
@@ -179,7 +179,7 @@ gmd(
     } = conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a song name");
     }
 
@@ -197,7 +197,7 @@ gmd(
       const endpointResult = await queryAPI(videoUrl, audioEndpoints, conText);
       
       if (!endpointResult.success) {
-        await react("❌");
+        await react("⚠️");
         return reply("All download services are currently unavailable. Please try again later.");
       }
       
@@ -211,7 +211,7 @@ gmd(
       }
 
       if (!isValidBuffer(bufferRes)) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to download audio. Please try again later.");
       }
 
@@ -262,7 +262,7 @@ gmd(
         await react("⬇️");
 
         if (!isValidBuffer(bufferRes)) {
-          await react("❌");
+          await react("⚠️");
           return reply("Download failed. Please try .play again.");
         }
 
@@ -295,10 +295,10 @@ gmd(
             return;
           }
 
-          await react("✅");
+          await react("✔️");
         } catch (error) {
           logError("Error sending media", error);
-          await react("❌");
+          await react("⚠️");
           await Gifted.sendMessage(from, { text: "Failed to send media. Please try again." }, { quoted: messageData });
         }
       };
@@ -311,7 +311,7 @@ gmd(
       
     } catch (error) {
       logError("Error during download process", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Oops! Something went wrong. Please try again.");
     }
   },
@@ -338,7 +338,7 @@ gmd(
     } = conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a video name");
     }
 
@@ -356,7 +356,7 @@ gmd(
       const endpointResult = await queryAPI(videoUrl, videoEndpoints, conText);
       
       if (!endpointResult.success) {
-        await react("❌");
+        await react("⚠️");
         return reply("All download services are currently unavailable. Please try again later.");
       }
       
@@ -370,7 +370,7 @@ gmd(
       }
 
       if (!isValidBuffer(buffer)) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to download video. Please try again later.");
       }
 
@@ -456,10 +456,10 @@ gmd(
             return;
           }
 
-          await react("✅");
+          await react("✔️");
         } catch (error) {
           logError("Error sending media", error);
-          await react("❌");
+          await react("⚠️");
           await Gifted.sendMessage(from, { text: "Failed to send media. Please try again." }, { quoted: messageData });
         }
       };
@@ -472,7 +472,7 @@ gmd(
       
     } catch (error) {
       logError("Error during download process", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Oops! Something went wrong. Please try again.");
     }
   },

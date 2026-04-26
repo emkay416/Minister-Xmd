@@ -51,11 +51,11 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     const valid = ["true", "false"];
     const value = parseBooleanInput(q);
     if (!value || !valid.includes(value)) {
-      return reply(`❌ Please specify: on or off`);
+      return reply(`⚠️ Please specify: on or off`);
     }
     try {
       const current = await getSetting("AUTO_LIKE_STATUS");
@@ -65,10 +65,10 @@ gmd(
         );
       }
       await setSetting("AUTO_LIKE_STATUS", value);
-      await react("✅");
-      await reply(`✅ Auto like status set to: *${formatBoolDisplay(value)}*\n\n⚠️ Note: Auto like only works when auto view (*autoreadstatus*) is also *ON*`);
+      await react("✔️");
+      await reply(`✔️ Auto like status set to: *${formatBoolDisplay(value)}*\n\n⚠️ Note: Auto like only works when auto view (*autoreadstatus*) is also *ON*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -83,11 +83,11 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     const valid = ["true", "false"];
     const value = parseBooleanInput(q);
     if (!value || !valid.includes(value)) {
-      return reply(`❌ Please specify: on or off`);
+      return reply(`⚠️ Please specify: on or off`);
     }
     try {
       const current = await getSetting("AUTO_READ_STATUS");
@@ -97,10 +97,10 @@ gmd(
         );
       }
       await setSetting("AUTO_READ_STATUS", value);
-      await react("✅");
-      await reply(`✅ Auto read status set to: *${formatBoolDisplay(value)}*`);
+      await react("✔️");
+      await reply(`✔️ Auto read status set to: *${formatBoolDisplay(value)}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -115,10 +115,10 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     if (!q)
       return reply(
-        "❌ Please provide emojis separated by commas!\nExample: .setstatusemojis 💛,❤️,💜",
+        "⚠️ Please provide emojis separated by commas!\nExample: .setstatusemojis 💛,❤️,💜",
       );
     try {
       const current = await getSetting("STATUS_LIKE_EMOJIS");
@@ -126,10 +126,10 @@ gmd(
         return reply(`⚠️ Status emojis are already set to: *${q.trim()}*`);
       }
       await setSetting("STATUS_LIKE_EMOJIS", q.trim());
-      await react("✅");
-      await reply(`✅ Status emojis set to: *${q.trim()}*`);
+      await react("✔️");
+      await reply(`✔️ Status emojis set to: *${q.trim()}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -144,18 +144,18 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide reply text!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide reply text!");
     try {
       const current = await getSetting("STATUS_REPLY_TEXT");
       if (current === q.trim()) {
         return reply(`⚠️ Status reply text is already set to this value!`);
       }
       await setSetting("STATUS_REPLY_TEXT", q.trim());
-      await react("✅");
-      await reply(`✅ Status reply text updated!`);
+      await react("✔️");
+      await reply(`✔️ Status reply text updated!`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -170,14 +170,14 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
 
     const input = (q || "").toLowerCase().trim();
     const validModes = ["on", "all", "dm", "groups", "commands", "off"];
 
     if (!input || !validModes.includes(input)) {
       return reply(
-        `❌ Please specify a valid mode:\n• *on/all* - React to all messages\n• *dm* - React to private chats only\n• *groups* - React to group messages only\n• *commands* - React to bot commands only\n• *off* - Disable auto react`,
+        `⚠️ Please specify a valid mode:\n• *on/all* - React to all messages\n• *dm* - React to private chats only\n• *groups* - React to group messages only\n• *commands* - React to bot commands only\n• *off* - Disable auto react`,
       );
     }
 
@@ -191,10 +191,10 @@ gmd(
         );
       }
       await setSetting("AUTO_REACT", value);
-      await react("✅");
-      await reply(`✅ Auto react set to: *${value.toUpperCase()}*`);
+      await react("✔️");
+      await reply(`✔️ Auto react set to: *${value.toUpperCase()}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -209,11 +209,11 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     const valid = ["true", "false"];
     const value = parseBooleanInput(q);
     if (!value || !valid.includes(value)) {
-      return reply(`❌ Please specify: on or off`);
+      return reply(`⚠️ Please specify: on or off`);
     }
     try {
       const current = await getSetting("AUTO_REPLY");
@@ -221,10 +221,10 @@ gmd(
         return reply(`⚠️ Auto reply is already: *${formatBoolDisplay(value)}*`);
       }
       await setSetting("AUTO_REPLY", value);
-      await react("✅");
-      await reply(`✅ Auto reply set to: *${formatBoolDisplay(value)}*`);
+      await react("✔️");
+      await reply(`✔️ Auto reply set to: *${formatBoolDisplay(value)}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -239,11 +239,11 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     const valid = ["true", "false"];
     const value = parseBooleanInput(q);
     if (!value || !valid.includes(value)) {
-      return reply(`❌ Please specify: on or off`);
+      return reply(`⚠️ Please specify: on or off`);
     }
     try {
       const current = await getSetting("AUTO_BIO");
@@ -251,10 +251,10 @@ gmd(
         return reply(`⚠️ Auto bio is already: *${formatBoolDisplay(value)}*`);
       }
       await setSetting("AUTO_BIO", value);
-      await react("✅");
-      await reply(`✅ Auto bio set to: *${formatBoolDisplay(value)}*`);
+      await react("✔️");
+      await reply(`✔️ Auto bio set to: *${formatBoolDisplay(value)}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -270,7 +270,7 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     try {
       const value = q ? q.trim() : "";
       const current = await getSetting("AUTO_BLOCK");
@@ -282,14 +282,14 @@ gmd(
         }
       }
       await setSetting("AUTO_BLOCK", value);
-      await react("✅");
+      await react("✔️");
       if (value) {
-        await reply(`✅ Auto block set for country codes: *${value}*`);
+        await reply(`✔️ Auto block set for country codes: *${value}*`);
       } else {
-        await reply(`✅ Auto block disabled`);
+        await reply(`✔️ Auto block disabled`);
       }
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -304,14 +304,14 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
 
     const input = (q || "").toLowerCase().trim();
     const validModes = ["on", "all", "dm", "groups", "commands", "off"];
 
     if (!input || !validModes.includes(input)) {
       return reply(
-        `❌ Please specify a valid mode:\n• *on/all* - Read all messages\n• *dm* - Read private chats only\n• *groups* - Read group messages only\n• *commands* - Read bot commands only\n• *off* - Disable auto read`,
+        `⚠️ Please specify a valid mode:\n• *on/all* - Read all messages\n• *dm* - Read private chats only\n• *groups* - Read group messages only\n• *commands* - Read bot commands only\n• *off* - Disable auto read`,
       );
     }
 
@@ -325,10 +325,10 @@ gmd(
         );
       }
       await setSetting("AUTO_READ_MESSAGES", value);
-      await react("✅");
-      await reply(`✅ Auto read messages set to: *${value.toUpperCase()}*`);
+      await react("✔️");
+      await reply(`✔️ Auto read messages set to: *${value.toUpperCase()}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -343,18 +343,18 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide a YouTube link!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide a YouTube link!");
     try {
       const current = await getSetting("YT");
       if (current === q.trim()) {
         return reply(`⚠️ YouTube link is already set to: *${q.trim()}*`);
       }
       await setSetting("YT", q.trim());
-      await react("✅");
-      await reply(`✅ YouTube link set to: *${q.trim()}*`);
+      await react("✔️");
+      await reply(`✔️ YouTube link set to: *${q.trim()}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -369,18 +369,18 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide a newsletter JID!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide a newsletter JID!");
     try {
       const current = await getSetting("NEWSLETTER_JID");
       if (current === q.trim()) {
         return reply(`⚠️ Newsletter JID is already set to this value!`);
       }
       await setSetting("NEWSLETTER_JID", q.trim());
-      await react("✅");
-      await reply(`✅ Newsletter JID set!`);
+      await react("✔️");
+      await reply(`✔️ Newsletter JID set!`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -395,18 +395,18 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide a group JID or invite code!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide a group JID or invite code!");
     try {
       const current = await getSetting("GC_JID");
       if (current === q.trim()) {
         return reply(`⚠️ Group JID is already set to this value!`);
       }
       await setSetting("GC_JID", q.trim());
-      await react("✅");
-      await reply(`✅ Group JID set!`);
+      await react("✔️");
+      await reply(`✔️ Group JID set!`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -421,18 +421,18 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide a newsletter URL!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide a newsletter URL!");
     try {
       const current = await getSetting("NEWSLETTER_URL");
       if (current === q.trim()) {
         return reply(`⚠️ Newsletter URL is already set to this value!`);
       }
       await setSetting("NEWSLETTER_URL", q.trim());
-      await react("✅");
-      await reply(`✅ Newsletter URL set!`);
+      await react("✔️");
+      await reply(`✔️ Newsletter URL set!`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -447,18 +447,18 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide a repository!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide a repository!");
     try {
       const current = await getSetting("BOT_REPO");
       if (current === q.trim()) {
         return reply(`⚠️ Bot repository is already set to: *${q.trim()}*`);
       }
       await setSetting("BOT_REPO", q.trim());
-      await react("✅");
-      await reply(`✅ Bot repository set to: *${q.trim()}*`);
+      await react("✔️");
+      await reply(`✔️ Bot repository set to: *${q.trim()}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -473,18 +473,18 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide a pack name!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide a pack name!");
     try {
       const current = await getSetting("PACK_NAME");
       if (current === q.trim()) {
         return reply(`⚠️ Pack name is already set to: *${q.trim()}*`);
       }
       await setSetting("PACK_NAME", q.trim());
-      await react("✅");
-      await reply(`✅ Pack name set to: *${q.trim()}*`);
+      await react("✔️");
+      await reply(`✔️ Pack name set to: *${q.trim()}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -499,18 +499,18 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide a pack author!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide a pack author!");
     try {
       const current = await getSetting("PACK_AUTHOR");
       if (current === q.trim()) {
         return reply(`⚠️ Pack author is already set to: *${q.trim()}*`);
       }
       await setSetting("PACK_AUTHOR", q.trim());
-      await react("✅");
-      await reply(`✅ Pack author set to: *${q.trim()}*`);
+      await react("✔️");
+      await reply(`✔️ Pack author set to: *${q.trim()}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -525,17 +525,17 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     if (!q)
       return reply(
-        "❌ Please provide a setting key!\nExample: .getsetting PREFIX",
+        "⚠️ Please provide a setting key!\nExample: .getsetting PREFIX",
       );
     try {
       const value = await getSetting(q.toUpperCase().trim());
-      await react("✅");
+      await react("✔️");
       await reply(`⚙️ *${q.toUpperCase()}:* ${value || "Not Set"}`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -550,10 +550,10 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     if (!q || !q.includes(" ")) {
       return reply(
-        "❌ Please provide key and value!\nExample: .setsetting PREFIX !",
+        "⚠️ Please provide key and value!\nExample: .setsetting PREFIX !",
       );
     }
     try {
@@ -565,10 +565,10 @@ gmd(
         return reply(`⚠️ *${key}* is already set to: *${value}*`);
       }
       await setSetting(key, value);
-      await react("✅");
-      await reply(`✅ *${key}* set to: *${value}*`);
+      await react("✔️");
+      await reply(`✔️ *${key}* set to: *${value}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -583,16 +583,16 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!q) return reply("❌ Please provide a setting key to reset!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!q) return reply("⚠️ Please provide a setting key to reset!");
     try {
       const defaultValue = await resetSetting(q.toUpperCase().trim());
-      await react("✅");
+      await react("✔️");
       await reply(
-        `✅ *${q.toUpperCase()}* reset to default: *${defaultValue || "Not Set"}*`,
+        `✔️ *${q.toUpperCase()}* reset to default: *${defaultValue || "Not Set"}*`,
       );
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -607,13 +607,13 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     try {
       await resetAllSettings();
-      await react("✅");
-      await reply(`✅ All settings have been reset to defaults!`);
+      await react("✔️");
+      await reply(`✔️ All settings have been reset to defaults!`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -628,11 +628,11 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     const valid = ["true", "false"];
     const value = parseBooleanInput(q);
     if (!value || !valid.includes(value)) {
-      return reply(`❌ Please specify: on or off`);
+      return reply(`⚠️ Please specify: on or off`);
     }
     try {
       const current = await getSetting("AUTO_REPLY_STATUS");
@@ -642,10 +642,10 @@ gmd(
         );
       }
       await setSetting("AUTO_REPLY_STATUS", value);
-      await react("✅");
-      await reply(`✅ Auto reply status set to: *${formatBoolDisplay(value)}*\n\n⚠️ Note: Auto reply to status only works when auto view (*autoreadstatus*) is also *ON*`);
+      await react("✔️");
+      await reply(`✔️ Auto reply status set to: *${formatBoolDisplay(value)}*\n\n⚠️ Note: Auto reply to status only works when auto view (*autoreadstatus*) is also *ON*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -660,11 +660,11 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     const valid = ["true", "false"];
     const value = parseBooleanInput(q);
     if (!value || !valid.includes(value)) {
-      return reply(`❌ Please specify: on or off`);
+      return reply(`⚠️ Please specify: on or off`);
     }
     try {
       const current = await getSetting("PM_PERMIT");
@@ -672,10 +672,10 @@ gmd(
         return reply(`⚠️ PM Permit is already: *${formatBoolDisplay(value)}*`);
       }
       await setSetting("PM_PERMIT", value);
-      await react("✅");
-      await reply(`✅ PM Permit set to: *${formatBoolDisplay(value)}*`);
+      await react("✔️");
+      await reply(`✔️ PM Permit set to: *${formatBoolDisplay(value)}*`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -691,12 +691,12 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser, isGroup, isAdmin } = conText;
-    if (!isGroup) return reply("❌ This command only works in groups!");
-    if (!isSuperUser && !isAdmin) return reply("❌ Admin/Owner Only Command!");
+    if (!isGroup) return reply("⚠️ This command only works in groups!");
+    if (!isSuperUser && !isAdmin) return reply("⚠️ Admin/Owner Only Command!");
     const valid = ["true", "false"];
     const value = parseBooleanInput(q);
     if (!value || !valid.includes(value)) {
-      return reply(`❌ Please specify: on or off`);
+      return reply(`⚠️ Please specify: on or off`);
     }
     try {
       const current = await getGroupSetting(from, "GROUP_EVENTS");
@@ -706,12 +706,12 @@ gmd(
         );
       }
       await setGroupSetting(from, "GROUP_EVENTS", value);
-      await react("✅");
+      await react("✔️");
       await reply(
-        `✅ Group events for this group: *${formatBoolDisplay(value)}*`,
+        `✔️ Group events for this group: *${formatBoolDisplay(value)}*`,
       );
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -726,17 +726,17 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     try {
       const sudoList = await getSudoNumbers();
       if (sudoList.length === 0) {
         return reply("⚠️ No sudo numbers to remove.");
       }
       const count = await clearAllSudo();
-      await react("✅");
-      await reply(`✅ Removed *${count}* sudo number(s) from database.`);
+      await react("✔️");
+      await reply(`✔️ Removed *${count}* sudo number(s) from database.`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -751,8 +751,8 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { reply, react, isAdmin, isSuperAdmin, isGroup, groupName } = conText;
-    if (!isGroup) return reply("❌ This command only works in groups!");
-    if (!isAdmin && !isSuperAdmin) return reply("❌ Admin Only Command!");
+    if (!isGroup) return reply("⚠️ This command only works in groups!");
+    if (!isAdmin && !isSuperAdmin) return reply("⚠️ Admin Only Command!");
 
     try {
       const {
@@ -860,10 +860,10 @@ gmd(
       msg += `╰━━━━━━━━━━━╯\n`;
       msg += `\n_Use .setwelcome, .setgoodbye, .setantilink, etc to modify_`;
 
-      await react("✅");
+      await react("✔️");
       await reply(msg);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -879,16 +879,16 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { reply, react, isSuperUser, isGroup } = conText;
-    if (!isGroup) return reply("❌ This command only works in groups!");
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isGroup) return reply("⚠️ This command only works in groups!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     try {
       await resetAllGroupSettings(from);
-      await react("✅");
+      await react("✔️");
       await reply(
-        `✅ All settings for this group have been reset to defaults.\n\n*Cleared:*\n▸ Welcome message\n▸ Goodbye message\n▸ Group events\n▸ Antilink\n▸ Antilink warnings`,
+        `✔️ All settings for this group have been reset to defaults.\n\n*Cleared:*\n▸ Welcome message\n▸ Goodbye message\n▸ Group events\n▸ Antilink\n▸ Antilink warnings`,
       );
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -911,7 +911,7 @@ gmd(
   },
   async (from, Gifted, conText) => {
     const { q, reply, react, isSuperUser } = conText;
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
 
     if (q !== "confirm") {
       return reply(
@@ -928,12 +928,12 @@ gmd(
       } = require("../gift/database/groupSettings");
       await GroupSettingsDB.destroy({ where: {} });
       await AntilinkWarningsDB.destroy({ where: {} });
-      await react("✅");
+      await react("✔️");
       await reply(
-        `✅ Database has been completely reset to defaults.\n\nAll settings, sudo numbers, and group configurations have been cleared.`,
+        `✔️ Database has been completely reset to defaults.\n\nAll settings, sudo numbers, and group configurations have been cleared.`,
       );
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -949,8 +949,8 @@ gmd(
   async (from, Gifted, conText) => {
     const { reply, react, isSuperUser } = conText;
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     try {
@@ -990,7 +990,7 @@ gmd(
 
       await reply(text);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -1006,12 +1006,12 @@ gmd(
   async (from, Gifted, conText) => {
     const { reply, react, isSuperUser, q } = conText;
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     if (!q || isNaN(parseInt(q))) {
-      return reply("❌ Provide a note ID.\n\nUsage: .admindelnote <id>");
+      return reply("⚠️ Provide a note ID.\n\nUsage: .admindelnote <id>");
     }
 
     try {
@@ -1019,13 +1019,13 @@ gmd(
       const deleted = await deleteNoteById(noteId);
 
       if (!deleted) {
-        return reply(`❌ Note with ID ${noteId} not found.`);
+        return reply(`⚠️ Note with ID ${noteId} not found.`);
       }
 
-      await react("✅");
-      return reply(`✅ Note ID ${noteId} deleted!`);
+      await react("✔️");
+      return reply(`✔️ Note ID ${noteId} deleted!`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -1041,13 +1041,13 @@ gmd(
   async (from, Gifted, conText) => {
     const { reply, react, isSuperUser, q } = conText;
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     if (!q || q.trim() === "") {
       return reply(
-        "❌ Provide note ID and new content.\n\nUsage: .adminupdatenote <id> <new text>",
+        "⚠️ Provide note ID and new content.\n\nUsage: .adminupdatenote <id> <new text>",
       );
     }
 
@@ -1057,27 +1057,27 @@ gmd(
 
       if (isNaN(noteId)) {
         return reply(
-          "❌ First argument must be a note ID.\n\nUsage: .adminupdatenote <id> <new text>",
+          "⚠️ First argument must be a note ID.\n\nUsage: .adminupdatenote <id> <new text>",
         );
       }
 
       const newContent = parts.slice(1).join(" ");
       if (!newContent) {
         return reply(
-          "❌ Provide new content.\n\nUsage: .adminupdatenote <id> <new text>",
+          "⚠️ Provide new content.\n\nUsage: .adminupdatenote <id> <new text>",
         );
       }
 
       const note = await updateNoteById(noteId, newContent);
 
       if (!note) {
-        return reply(`❌ Note with ID ${noteId} not found.`);
+        return reply(`⚠️ Note with ID ${noteId} not found.`);
       }
 
-      await react("✅");
-      return reply(`✅ Note ID ${noteId} updated!\n\n📝 "${note.content}"`);
+      await react("✔️");
+      return reply(`✔️ Note ID ${noteId} updated!\n\n📝 "${note.content}"`);
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -1093,13 +1093,13 @@ gmd(
   async (from, Gifted, conText) => {
     const { reply, react, isSuperUser, q } = conText;
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     if (!q || q.trim() === "") {
       return reply(
-        "❌ Provide user number.\n\nUsage: .adminclearnotes <number>",
+        "⚠️ Provide user number.\n\nUsage: .adminclearnotes <number>",
       );
     }
 
@@ -1113,12 +1113,12 @@ gmd(
         return reply(`📭 No notes found for ${userNumber}.`);
       }
 
-      await react("✅");
+      await react("✔️");
       return reply(
-        `✅ Deleted ${count} note${count > 1 ? "s" : ""} for ${userNumber}!`,
+        `✔️ Deleted ${count} note${count > 1 ? "s" : ""} for ${userNumber}!`,
       );
     } catch (error) {
-      await reply(`❌ Error: ${error.message}`);
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );

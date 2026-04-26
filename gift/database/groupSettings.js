@@ -317,10 +317,10 @@ async function initializeGroupSettings() {
         await AntibadWarningsDB.sync({ alter: true });
         await AntiGroupMentionWarningsDB.sync({ alter: true });
         await BadWordsDB.sync({ alter: true });
-        console.log("✅ Group Settings Initialized.");
+        console.log("✔️ Group Settings Initialized.");
     } catch (error) {
         if (error.original?.code === 'SQLITE_ERROR' && error.original?.message?.includes('already exists')) {
-            console.log("✅ Group Settings Initialized.");
+            console.log("✔️ Group Settings Initialized.");
         } else {
             throw error;
         }

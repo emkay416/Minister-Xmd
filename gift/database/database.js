@@ -40,7 +40,7 @@ const DATABASE = DatabaseManager.getInstance();
 async function syncDatabase() {
     try {
         await DATABASE.sync();
-        console.log("✅ Database Synchronized.");
+        console.log("✔️ Database Synchronized.");
     } catch (error) {
         console.error("Error synchronizing the database:", error);
         throw error;

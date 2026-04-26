@@ -26,7 +26,7 @@ gmd(
 
     const url = q?.trim();
     if (!url) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         "Please provide a URL\n\nUsage: .ssphone https://google.com",
       );
@@ -49,10 +49,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Screenshot error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to capture screenshot: " + e.message);
     }
   },
@@ -80,7 +80,7 @@ gmd(
 
     const url = q?.trim();
     if (!url) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a URL\n\nUsage: .sstab https://google.com");
     }
 
@@ -101,10 +101,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Screenshot error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to capture screenshot: " + e.message);
     }
   },
@@ -132,7 +132,7 @@ gmd(
 
     const url = q?.trim();
     if (!url) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a URL\n\nUsage: .sspc https://google.com");
     }
 
@@ -153,10 +153,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Screenshot error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to capture screenshot: " + e.message);
     }
   },
@@ -192,7 +192,7 @@ gmd(
     }
 
     if (!content) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide text or a link\n\nUsage: ${botPrefix}createqr Hello World\nOr quote a message`,
       );
@@ -215,10 +215,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Create QR error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to create QR code: " + e.message);
     }
   },
@@ -262,14 +262,14 @@ gmd(
           imageUrl = upload.url;
           await fs.unlink(tempPath).catch(() => {});
         } catch (e) {
-          await react("❌");
+          await react("⚠️");
           return reply("Failed to process the quoted image");
         }
       }
     }
 
     if (!imageUrl) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide a QR code image URL or quote an image\n\nUsage: ${botPrefix}readqr <url>\nOr quote an image`,
       );
@@ -283,7 +283,7 @@ gmd(
       });
 
       if (!res.data?.success) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to read QR code or no QR code found in image");
       }
 
@@ -305,10 +305,10 @@ gmd(
         ],
       });
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Read QR error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to read QR code: " + e.message);
     }
   },
@@ -338,7 +338,7 @@ gmd(
 
     const text = q?.trim();
     if (!text) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Please provide text\n\nUsage: ${botPrefix}ttp Hello World`);
     }
 
@@ -350,7 +350,7 @@ gmd(
       });
 
       if (!res.data?.success || !res.data?.image_url) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to create text image");
       }
 
@@ -368,10 +368,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("TTP error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to create sticker: " + e.message);
     }
   },
@@ -400,7 +400,7 @@ gmd(
 
     const text = q?.trim();
     if (!text) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide text\n\nUsage: ${botPrefix}fancy Hello\nOr ${botPrefix}fancy4 Hello (for specific style)`,
       );
@@ -414,7 +414,7 @@ gmd(
       });
 
       if (!res.data?.success || !res.data?.results) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to generate fancy text");
       }
 
@@ -440,7 +440,7 @@ gmd(
             ],
           });
         } else {
-          await react("❌");
+          await react("⚠️");
           return reply(`Invalid style number. Available: 1-${results.length}`);
         }
       } else {
@@ -454,10 +454,10 @@ gmd(
         await reply(txt);
       }
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Fancy text error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to generate fancy text: " + e.message);
     }
   },
@@ -477,7 +477,7 @@ gmd(
 
     const term = q?.trim();
     if (!term) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Please provide a word to define\n\nUsage: ${botPrefix}define hello`);
     }
 
@@ -489,7 +489,7 @@ gmd(
       });
 
       if (!res.data?.success || !res.data?.results?.length) {
-        await react("❌");
+        await react("⚠️");
         return reply("No definitions found for: " + term);
       }
 
@@ -510,10 +510,10 @@ gmd(
       txt += `> *${botFooter}*`;
 
       await reply(txt);
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Define error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to get definition: " + e.message);
     }
   },
@@ -542,7 +542,7 @@ gmd(
 
     const url = q?.trim();
     if (!url) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide a URL\n\nUsage: ${botPrefix}web2zip https://example.com`,
       );
@@ -574,10 +574,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Web2zip error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to download website: " + e.message);
     }
   },
@@ -606,7 +606,7 @@ gmd(
 
     const input = q?.trim();
     if (!input) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide two emojis\n\nUsage: ${botPrefix}emojimix 😂:🙄\nOr: ${botPrefix}emojimix 😂🙄`,
       );
@@ -628,7 +628,7 @@ gmd(
     }
 
     if (!emoji1 || !emoji2) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Please provide two valid emojis\n\nUsage: ${botPrefix}emojimix 😂:🙄`);
     }
 
@@ -649,10 +649,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Emoji mix error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply(
         "Failed to mix emojis. Make sure both emojis are valid and supported.",
       );
@@ -682,13 +682,13 @@ gmd(
     } = conText;
 
     if (!quotedMsg) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Please quote/reply to a document or media file\n\nUsage: ${botPrefix}rename <new filename>`);
     }
 
     const newName = q?.trim();
     if (!newName) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Please provide a new filename\n\nUsage: ${botPrefix}rename <new filename>\nExample: ${botPrefix}rename my_video.mp4`);
     }
 
@@ -729,8 +729,8 @@ gmd(
         originalMime = "image/webp";
         originalExt = ".webp";
       } else {
-        await react("❌");
-        return reply("❌ Please quote a document, image, video, audio, or sticker file.");
+        await react("⚠️");
+        return reply("⚠️ Please quote a document, image, video, audio, or sticker file.");
       }
 
       const buffer = await getMediaBuffer(mediaMsg, mediaType);
@@ -750,10 +750,10 @@ gmd(
         { quoted: mek }
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Rename error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to rename file: " + e.message);
     }
   },

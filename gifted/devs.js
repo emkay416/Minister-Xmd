@@ -16,8 +16,8 @@ gmd(
         const { reply, react, isSuperUser } = conText;
 
         if (!isSuperUser) {
-            await react("❌");
-            return reply("❌ Owner Only Command!");
+            await react("⚠️");
+            return reply("⚠️ Owner Only Command!");
         }
 
         const ownerNumber = (await getSetting("OWNER_NUMBER")) || "";

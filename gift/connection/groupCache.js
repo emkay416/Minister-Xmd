@@ -139,7 +139,7 @@ const initializeLidStore = async (Gifted) => {
                 }
             }
             console.log(
-                `✅ LID store initialized => ${lidToJidStore.keys().length} Mappings from ${Object.keys(groups).length} Groups`,
+                `✔️ LID store initialized => ${lidToJidStore.keys().length} Mappings from ${Object.keys(groups).length} Groups`,
             );
         }
     } catch (error) {

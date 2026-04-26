@@ -14,22 +14,22 @@ gmd(
         const { q, reply, react, isSuperUser } = conText;
 
         if (!isSuperUser) {
-            await react("❌");
-            return reply("❌ Owner Only Command!");
+            await react("⚠️");
+            return reply("⚠️ Owner Only Command!");
         }
 
         const arg = (q || "").trim().toLowerCase();
         if (arg === "clear" || arg === "reset") {
             clearLogs();
             await react("🧹");
-            return reply("✅ Error log buffer cleared.");
+            return reply("✔️ Error log buffer cleared.");
         }
 
         const limit = parseInt(arg, 10);
         const entries = getRecentLogs(Number.isFinite(limit) && limit > 0 ? limit : 20);
 
         if (!entries.length) {
-            return reply("✅ No errors recorded since startup.");
+            return reply("✔️ No errors recorded since startup.");
         }
 
         const formatted = entries

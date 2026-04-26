@@ -128,7 +128,7 @@ Use *.delmail* first to delete it, then generate a new one.
             );
 
             if (!res.data?.success || !res.data?.result?.email) {
-                await react("❌");
+                await react("⚠️");
                 return reply("Failed to generate temp email. Try again later.");
             }
 
@@ -169,10 +169,10 @@ _Copy the email below and use it for verification_`,
                 ],
             });
 
-            await react("✅");
+            await react("✔️");
         } catch (e) {
             console.error("Tempmail generate error:", e);
-            await react("❌");
+            await react("⚠️");
             return reply("Failed to generate temp email: " + e.message);
         }
     },
@@ -202,9 +202,9 @@ gmd(
 
         const emailData = await getUserEmailWithExpiry(userJid);
         if (!emailData) {
-            await react("❌");
+            await react("⚠️");
             return reply(
-                `❌ Hey @${getUserName(sender)}, you don't have an active temp email.\n\nUse *.tempmail* to generate one first.`,
+                `⚠️ Hey @${getUserName(sender)}, you don't have an active temp email.\n\nUse *.tempmail* to generate one first.`,
             );
         }
 
@@ -252,7 +252,7 @@ _Wait a few seconds after sending an email and try again._`,
                     });
                     return;
                 }
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch inbox. Your email may have expired. Generate a new one with *.tempmail*",
                 );
@@ -344,10 +344,10 @@ Hey @${getUserName(sender)}, you have *${emails.length}* email(s)
                 ],
             });
 
-            await react("✅");
+            await react("✔️");
         } catch (e) {
             console.error("Tempmail inbox error:", e);
-            await react("❌");
+            await react("⚠️");
             if (e.message?.includes("expired") || e.response?.status === 404) {
                 return reply(
                     "Your temp email has expired. Generate a new one with *.tempmail*",
@@ -383,18 +383,18 @@ gmd(
 
         const emailData = await getUserEmailWithExpiry(userJid);
         if (!emailData) {
-            await react("❌");
+            await react("⚠️");
             return reply(
-                `❌ Hey @${getUserName(sender)}, you don't have an active temp email.\n\nUse *.tempmail* to generate one first.`,
+                `⚠️ Hey @${getUserName(sender)}, you don't have an active temp email.\n\nUse *.tempmail* to generate one first.`,
             );
         }
 
         const email = emailData.email;
         const mailNum = parseInt(q?.trim());
         if (!q || isNaN(mailNum) || mailNum < 1) {
-            await react("❌");
+            await react("⚠️");
             return reply(
-                `❌ Hey @${getUserName(sender)}, provide a valid email number.\n\nUsage: .readmail <number>\nExample: .readmail 1`,
+                `⚠️ Hey @${getUserName(sender)}, provide a valid email number.\n\nUsage: .readmail <number>\nExample: .readmail 1`,
             );
         }
 
@@ -415,7 +415,7 @@ gmd(
             );
 
             if (!inboxRes.data?.success || !inboxRes.data?.result) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
                     "Failed to fetch inbox. Your email may have expired. Generate a new one with *.tempmail*",
                 );
@@ -430,9 +430,9 @@ gmd(
             }
 
             if (mailNum > emails.length) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
-                    `❌ Hey @${getUserName(sender)}, you only have ${emails.length} email(s).\n\nUse: .readmail 1 to .readmail ${emails.length}`,
+                    `⚠️ Hey @${getUserName(sender)}, you only have ${emails.length} email(s).\n\nUse: .readmail 1 to .readmail ${emails.length}`,
                 );
             }
 
@@ -578,10 +578,10 @@ ${cleanBody}
                 });
             }
 
-            await react("✅");
+            await react("✔️");
         } catch (e) {
             console.error("[TempMail] Readmail error:", e);
-            await react("❌");
+            await react("⚠️");
             return reply("Failed to read email: " + e.message);
         }
     },
@@ -608,16 +608,16 @@ gmd(
 
         const emailData = await getUserEmailWithExpiry(userJid);
         if (!emailData) {
-            await react("❌");
+            await react("⚠️");
             return reply(
-                `❌ Hey @${getUserName(sender)}, you don't have an active temp email.\n\nUse *.tempmail* to generate one.`,
+                `⚠️ Hey @${getUserName(sender)}, you don't have an active temp email.\n\nUse *.tempmail* to generate one.`,
             );
         }
 
         await deleteUserEmail(userJid);
-        await react("✅");
+        await react("✔️");
         return reply(
-            `✅ Hey @${getUserName(sender)}, your temp email *${emailData.email}* has been deleted.\n\nUse *.tempmail* to generate a new one.`,
+            `✔️ Hey @${getUserName(sender)}, your temp email *${emailData.email}* has been deleted.\n\nUse *.tempmail* to generate a new one.`,
         );
     },
 );

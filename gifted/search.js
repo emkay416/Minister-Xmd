@@ -29,7 +29,7 @@ gmd(
     const { q, mek, reply, react, sender, botFooter, gmdBuffer } = conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a search query");
     }
 
@@ -106,10 +106,10 @@ gmd(
         messageId: message.key.id,
       });
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Error during search process", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Oops! Something went wrong. Please try again.");
     }
   },
@@ -146,7 +146,7 @@ gmd(
     const isUrl = (s) => /^https?:\/\//i.test(s?.trim());
 
     if (!q?.trim() && !quotedMsg) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please reply to an audio/video message or provide a URL\n\nUsage: ${botPrefix}shazam <audio/video url>`,
       );
@@ -156,7 +156,7 @@ gmd(
     const quotedVideo = quoted?.videoMessage || quoted?.message?.videoMessage;
 
     if (!isUrl(q) && !quotedAudio && !quotedVideo) {
-      await react("❌");
+      await react("⚠️");
       return reply("The quoted message doesn't contain any audio or video");
     }
 
@@ -196,8 +196,8 @@ gmd(
       const res = await axios.get(apiUrl, { timeout: 60000 });
 
       if (!res.data?.success || !res.data?.result) {
-        await react("❌");
-        return reply("❌ Could not identify the music. Please try a clearer audio clip.");
+        await react("⚠️");
+        return reply("⚠️ Could not identify the music. Please try a clearer audio clip.");
       }
 
       const r = res.data.result;
@@ -240,14 +240,14 @@ gmd(
         },
         { quoted: mek },
       );
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       logError("Error in shazam command", e);
-      await react("❌");
+      await react("⚠️");
       if (e.message?.includes("empty media key")) {
         await reply("The media keys have expired — please send a fresh audio/video message.");
       } else {
-        await reply(`❌ Error identifying music: ${e.message}`);
+        await reply(`⚠️ Error identifying music: ${e.message}`);
       }
     }
   },
@@ -266,7 +266,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a search query");
     }
 
@@ -280,7 +280,7 @@ gmd(
         !Array.isArray(res.data.results) ||
         res.data.results.length === 0
       ) {
-        await react("❌");
+        await react("⚠️");
         return reply("No results found. Please try a different query.");
       }
 
@@ -351,10 +351,10 @@ gmd(
       await Gifted.relayMessage(from, message.message, {
         messageId: message.key.id,
       });
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Google search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to perform Google search. Please try again.");
     }
   },
@@ -381,7 +381,7 @@ gmd(
     } = conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a song name");
     }
 
@@ -400,7 +400,7 @@ gmd(
       }
 
       if (!lyrics) {
-        await react("❌");
+        await react("⚠️");
         return reply("No lyrics found.\n\nUse format: *.lyrics Artist - Song Title*\nExample: *.lyrics Adele - Hello*");
       }
 
@@ -424,10 +424,10 @@ gmd(
         ],
       });
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Lyrics search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to get lyrics. Please try again.");
     }
   },
@@ -446,7 +446,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide an app name to search");
     }
 
@@ -455,7 +455,7 @@ gmd(
       const res = await axios.get(apiUrl, { timeout: 60000 });
 
       if (!res.data?.success || !res.data?.results?.data) {
-        await react("❌");
+        await react("⚠️");
         return reply("No results found. Please try a different query.");
       }
 
@@ -518,10 +518,10 @@ gmd(
       await Gifted.relayMessage(from, message.message, {
         messageId: message.key.id,
       });
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("HappyMod search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search HappyMod. Please try again.");
     }
   },
@@ -540,7 +540,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide an app name to search");
     }
 
@@ -549,7 +549,7 @@ gmd(
       const res = await axios.get(apiUrl, { timeout: 60000 });
 
       if (!res.data?.success || !res.data?.results?.data) {
-        await react("❌");
+        await react("⚠️");
         return reply("No results found. Please try a different query.");
       }
 
@@ -612,10 +612,10 @@ gmd(
       await Gifted.relayMessage(from, message.message, {
         messageId: message.key.id,
       });
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("APK Mirror search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search APK Mirror. Please try again.");
     }
   },
@@ -642,7 +642,7 @@ gmd(
     } = conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a search query for stickers");
     }
 
@@ -655,7 +655,7 @@ gmd(
         !res.data?.results ||
         res.data.results.length === 0
       ) {
-        await react("❌");
+        await react("⚠️");
         return reply("No stickers found. Please try a different query.");
       }
 
@@ -688,10 +688,10 @@ gmd(
         }
       }
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Sticker search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search stickers. Please try again.");
     }
   },

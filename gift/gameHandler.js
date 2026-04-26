@@ -33,7 +33,7 @@ const getPlayerName = (jid) => jid.split("@")[0];
 
 const renderBoard = (board) => {
     const cell = (val) => {
-        if (val === "X") return "❌";
+        if (val === "X") return "⚠️";
         if (val === "O") return "⭕";
         return `${val}️⃣`;
     };
@@ -65,7 +65,7 @@ const setMoveTimeout = (chatJid, Gifted, currentPlayer, otherPlayer, player1) =>
         const active = await getActiveGame(chatJid);
         if (active && active.currentTurn === currentPlayer) {
             await endGame(chatJid);
-            const currentSymbol = currentPlayer === active.player1 ? "❌" : "⭕";
+            const currentSymbol = currentPlayer === active.player1 ? "⚠️" : "⭕";
             await Gifted.sendMessage(chatJid, {
                 text: `⏰ *TIC TAC TOE - TIMEOUT*\n\n@${getPlayerName(currentPlayer)} (${currentSymbol}) took too long to move!\n\n🏆 *WINNER: @${getPlayerName(otherPlayer)}* by timeout!\n\nStart a new game with *.ttt*`,
                 mentions: [currentPlayer, otherPlayer],
@@ -151,7 +151,7 @@ async function handleAiTttMove(from, Gifted, game) {
     
     const newBoard = JSON.parse(result.game.board);
     await Gifted.sendMessage(from, {
-        text: `🤖 AI played position ${aiMove + 1}\n\n${renderBoard(newBoard)}\n\n@${getPlayerName(result.game.currentTurn)}'s turn (❌)\n\n⏰ _30 seconds_`,
+        text: `🤖 AI played position ${aiMove + 1}\n\n${renderBoard(newBoard)}\n\n@${getPlayerName(result.game.currentTurn)}'s turn (⚠️)\n\n⏰ _30 seconds_`,
         mentions: [result.game.currentTurn],
     });
     
@@ -202,7 +202,7 @@ async function handleAiDiceRoll(from, Gifted, gameRef) {
     
     if (result.error) {
         await Gifted.sendMessage(from, {
-            text: `❌ AI roll error. Game ended.`,
+            text: `⚠️ AI roll error. Game ended.`,
         });
         await endDiceGame(from);
         return;
@@ -272,7 +272,7 @@ const handleGameMessage = async (Gifted, message) => {
                     clearGameTimeout(from);
                     const board = JSON.parse(result.board);
                     await Gifted.sendMessage(from, {
-                        text: `🎮 *TIC TAC TOE - GAME STARTED!*\n\nPlayer 1: @${getPlayerName(result.player1)} (❌)\nPlayer 2: @${getPlayerName(result.player2)} (⭕)\n\n${renderBoard(board)}\n\n@${getPlayerName(result.currentTurn)}'s turn (❌)\n\n*Reply with a number (1-9) to move!*\n⏰ _30 seconds per move_`,
+                        text: `🎮 *TIC TAC TOE - GAME STARTED!*\n\nPlayer 1: @${getPlayerName(result.player1)} (⚠️)\nPlayer 2: @${getPlayerName(result.player2)} (⭕)\n\n${renderBoard(board)}\n\n@${getPlayerName(result.currentTurn)}'s turn (⚠️)\n\n*Reply with a number (1-9) to move!*\n⏰ _30 seconds per move_`,
                         mentions: [result.player1, result.player2, result.currentTurn],
                     });
                     setMoveTimeout(from, Gifted, result.currentTurn, result.player2, result.player1);
@@ -285,7 +285,7 @@ const handleGameMessage = async (Gifted, message) => {
                 const result = await joinWcgGame(from, sender);
                 if (result && !result.error) {
                     await Gifted.sendMessage(from, {
-                        text: `✅ @${getPlayerName(sender)} joined the Word Chain game!\n\n👥 Players: ${result.players?.length || 0}\nHost can type *.wcgbegin* to start!`,
+                        text: `✔️ @${getPlayerName(sender)} joined the Word Chain game!\n\n👥 Players: ${result.players?.length || 0}\nHost can type *.wcgbegin* to start!`,
                         mentions: [sender],
                     });
                     return;
@@ -321,7 +321,7 @@ const handleGameMessage = async (Gifted, message) => {
             
             if (result.winner) {
                 clearGameTimeout(from);
-                const winnerSymbol = result.symbol === "X" ? "❌" : "⭕";
+                const winnerSymbol = result.symbol === "X" ? "⚠️" : "⭕";
                 await Gifted.sendMessage(from, {
                     text: `🎮 *TIC TAC TOE - GAME OVER!*\n\n${renderBoard(board)}\n\n🏆 *WINNER: @${getPlayerName(result.winner)}* ${winnerSymbol}\n\nCongratulations! 🎉`,
                     mentions: [result.winner],
@@ -337,7 +337,7 @@ const handleGameMessage = async (Gifted, message) => {
                 return;
             }
             
-            const currentSymbol = result.game.currentTurn === result.game.player1 ? "❌" : "⭕";
+            const currentSymbol = result.game.currentTurn === result.game.player1 ? "⚠️" : "⭕";
             const otherPlayer = result.game.currentTurn === result.game.player1 ? result.game.player2 : result.game.player1;
             
             if (game.isAiGame && result.game.currentTurn === BOT_JID) {
@@ -349,7 +349,7 @@ const handleGameMessage = async (Gifted, message) => {
             }
             
             await Gifted.sendMessage(from, {
-                text: `🎮 *TIC TAC TOE*\n\nPlayer 1: @${getPlayerName(result.game.player1)} (❌)\nPlayer 2: @${getPlayerName(result.game.player2)} (⭕)\n\n${renderBoard(board)}\n\n@${getPlayerName(result.game.currentTurn)}'s turn (${currentSymbol})\n\n*Reply 1-9 to move*\n⏰ _30 seconds_`,
+                text: `🎮 *TIC TAC TOE*\n\nPlayer 1: @${getPlayerName(result.game.player1)} (⚠️)\nPlayer 2: @${getPlayerName(result.game.player2)} (⭕)\n\n${renderBoard(board)}\n\n@${getPlayerName(result.game.currentTurn)}'s turn (${currentSymbol})\n\n*Reply 1-9 to move*\n⏰ _30 seconds_`,
                 mentions: [result.game.player1, result.game.player2, result.game.currentTurn],
             });
             
@@ -430,25 +430,25 @@ const handleGameMessage = async (Gifted, message) => {
             if (result.error === 'not_your_turn') return;
             if (result.error === 'word_used') {
                 await Gifted.sendMessage(from, {
-                    text: `❌ "${word}" has already been used!`,
+                    text: `⚠️ "${word}" has already been used!`,
                 });
                 return;
             }
             if (result.error === 'wrong_letter') {
                 await Gifted.sendMessage(from, {
-                    text: `❌ Word must start with *${result.expected.toUpperCase()}*!`,
+                    text: `⚠️ Word must start with *${result.expected.toUpperCase()}*!`,
                 });
                 return;
             }
             if (result.error === 'too_short') {
                 await Gifted.sendMessage(from, {
-                    text: "❌ Word must be at least 2 letters!",
+                    text: "⚠️ Word must be at least 2 letters!",
                 });
                 return;
             }
             if (result.error === 'invalid_word') {
                 await Gifted.sendMessage(from, {
-                    text: `❌ "${word}" is not a valid English word!`,
+                    text: `⚠️ "${word}" is not a valid English word!`,
                 });
                 return;
             }
@@ -460,14 +460,14 @@ const handleGameMessage = async (Gifted, message) => {
             const updatedGame = await getActiveWcgGame(from);
             if (updatedGame && updatedGame.isAiGame && result.nextPlayer === BOT_JID) {
                 await Gifted.sendMessage(from, {
-                    text: `✅ *${result.word}* (+${result.word.length} pts)\n\n🤖 AI is thinking...`,
+                    text: `✔️ *${result.word}* (+${result.word.length} pts)\n\n🤖 AI is thinking...`,
                 });
                 await handleAiWcgMove(from, Gifted, updatedGame);
                 return;
             }
             
             await Gifted.sendMessage(from, {
-                text: `✅ *${result.word}* (+${result.word.length} pts)\n\n🔄 @${getPlayerName(result.nextPlayer)}'s turn\nNext word starts with: *${nextLetter}*\n\n📊 Words: ${result.wordCount} | ⏰ 30s`,
+                text: `✔️ *${result.word}* (+${result.word.length} pts)\n\n🔄 @${getPlayerName(result.nextPlayer)}'s turn\nNext word starts with: *${nextLetter}*\n\n📊 Words: ${result.wordCount} | ⏰ 30s`,
                 mentions: [result.nextPlayer],
             });
             

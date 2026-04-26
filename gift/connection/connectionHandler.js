@@ -17,7 +17,7 @@ const safeNewsletterFollow = async (Gifted, newsletterJid) => {
         return true;
     } catch (error) {
         console.error(
-            `❌ Channel follow failed for ${newsletterJid}:`,
+            `⚠️ Channel follow failed for ${newsletterJid}:`,
             error.message,
         );
         return false;
@@ -43,7 +43,7 @@ const safeGroupAcceptInvite = async (Gifted, groupJid) => {
                 break;
             default:
                 console.error(
-                    `❌ Group join failed for ${groupJid}:`,
+                    `⚠️ Group join failed for ${groupJid}:`,
                     error.message,
                 );
         }
@@ -125,7 +125,7 @@ const setupConnectionHandler = (
                     try {
                         await fs.remove(sessionDir);
                     } catch (e) {
-                        console.error("❌ Failed to remove session:", e);
+                        console.error("⚠️ Failed to remove session:", e);
                     }
                     process.exit(1);
                     break;

@@ -36,7 +36,7 @@ gmd(
 
     let url = q?.trim() || extractUrl(getMsgText(quotedMsg));
 
-    if (!url) return reply("❌ Provide a URL or quote a message containing a link.");
+    if (!url) return reply("⚠️ Provide a URL or quote a message containing a link.");
     if (!url.startsWith("http://") && !url.startsWith("https://")) url = "https://" + url;
 
     try {
@@ -145,7 +145,7 @@ gmd(
       );
     } catch (err) {
       console.error("fetch error:", err);
-      return reply("❌ Failed to fetch: " + (err.message || "Unknown error"));
+      return reply("⚠️ Failed to fetch: " + (err.message || "Unknown error"));
     }
   },
 );
@@ -190,7 +190,7 @@ gmd(
           imageUrl = upload.url;
           await fs.unlink(tempPath).catch(() => {});
         } catch (e) {
-          await react("❌");
+          await react("⚠️");
           return reply("Failed to process the quoted image");
         }
       }
@@ -205,14 +205,14 @@ gmd(
     }
 
     if (!imageUrl) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide an image URL or quote an image with a prompt\n\nUsage: ${botPrefix}photoeditor <url> <prompt>\nOr quote an image with: ${botPrefix}photoeditor <prompt>`,
       );
     }
 
     if (!prompt) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         "Please provide an editing prompt\n\nExample: .photoeditor <url> Change his shirt color to blue",
       );
@@ -226,7 +226,7 @@ gmd(
       });
 
       if (!res.data?.success || !res.data?.result) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to edit the photo");
       }
 
@@ -239,10 +239,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Photo editor error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to edit the photo: " + e.message);
     }
   },
@@ -296,7 +296,7 @@ gmd(
             content = upload.url;
             await fs.unlink(tempPath).catch(() => {});
           } catch (e) {
-            await react("❌");
+            await react("⚠️");
             return reply("Failed to process the quoted image");
           }
         }
@@ -304,14 +304,14 @@ gmd(
     }
 
     if (!pdfName) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide a PDF name and content\n\n*Usage:*\n${botPrefix}pdf <name> <text>\n${botPrefix}pdf <name> <image_url>\n${botPrefix}pdf <name> (quote a message/image)`,
       );
     }
 
     if (!content) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide content for the PDF\n\n*Usage:*\n${botPrefix}pdf <name> <text>\n${botPrefix}pdf <name> <image_url>\n${botPrefix}pdf <name> (quote a message/image)`,
       );
@@ -338,10 +338,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Create PDF error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to create PDF: " + e.message);
     }
   },
@@ -361,7 +361,7 @@ gmd(
 
     const domain = q?.trim();
     if (!domain) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide a domain\n\nUsage: ${botPrefix}domaincheck example.com`,
       );
@@ -375,7 +375,7 @@ gmd(
       });
 
       if (!res.data?.success || !res.data?.result) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to fetch domain info");
       }
 
@@ -393,10 +393,10 @@ gmd(
       txt += `\n> *${botFooter}*`;
 
       await reply(txt);
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Domain check error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to check domain: " + e.message);
     }
   },
@@ -441,14 +441,14 @@ gmd(
           imageUrl = upload.url;
           await fs.unlink(tempPath).catch(() => {});
         } catch (e) {
-          await react("❌");
+          await react("⚠️");
           return reply("Failed to process the quoted image");
         }
       }
     }
 
     if (!imageUrl) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide an image URL or quote an image\n\nUsage: ${botPrefix}remini <url>\nOr quote an image`,
       );
@@ -462,7 +462,7 @@ gmd(
       });
 
       if (!res.data?.success || !res.data?.result) {
-        await react("❌");
+        await react("⚠️");
         return reply("Failed to enhance the photo");
       }
 
@@ -475,10 +475,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Remini error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to enhance the photo: " + e.message);
     }
   },
@@ -497,7 +497,7 @@ gmd(
 
     const text = q?.trim();
     if (!text) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Please provide text to convert\n\nUsage: ${botPrefix}ebinary Hello`);
     }
 
@@ -521,7 +521,7 @@ gmd(
       ],
     });
 
-    await react("✅");
+    await react("✔️");
   },
 );
 
@@ -538,7 +538,7 @@ gmd(
 
     const binary = q?.trim();
     if (!binary) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide binary to convert\n\nUsage: ${botPrefix}debinary 01001000 01100101 01101100 01101100 01101111`,
       );
@@ -565,9 +565,9 @@ gmd(
         ],
       });
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
-      await react("❌");
+      await react("⚠️");
       return reply("Invalid binary format");
     }
   },
@@ -586,7 +586,7 @@ gmd(
 
     const text = q?.trim();
     if (!text) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide text to convert\n\nUsage: ${botPrefix}ebase Hello World`,
       );
@@ -609,7 +609,7 @@ gmd(
       ],
     });
 
-    await react("✅");
+    await react("✔️");
   },
 );
 
@@ -626,7 +626,7 @@ gmd(
 
     const base64 = q?.trim();
     if (!base64) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please provide Base64 to decode\n\nUsage: ${botPrefix}dbase SGVsbG8gV29ybGQ=`,
       );
@@ -650,9 +650,9 @@ gmd(
         ],
       });
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
-      await react("❌");
+      await react("⚠️");
       return reply("Invalid Base64 format");
     }
   },
@@ -681,7 +681,7 @@ gmd(
 
     const url = q?.trim();
     if (!url) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Please provide a URL\n\nUsage: ${botPrefix}ssweb https://google.com`);
     }
 
@@ -702,10 +702,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Screenshot error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to capture screenshot: " + e.message);
     }
   },

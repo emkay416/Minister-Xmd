@@ -85,7 +85,7 @@ async function handleUpload(from, Gifted, conText, service) {
         } 
         else if (quotedVideo) {
             if (service !== 'catbox' && service !== 'giftedcdn' && service !== 'githubcdn') {
-                return reply(`❌ ${service} only supports images. Use ${botPrefix}catbox or ${botPrefix}giftedcdn or ${botPrefix}githubcdn  for videos and any other file type.`);
+                return reply(`⚠️ ${service} only supports images. Use ${botPrefix}catbox or ${botPrefix}giftedcdn or ${botPrefix}githubcdn  for videos and any other file type.`);
             }
             buffer = await getMediaBuffer(quotedVideo, "video");
             fileExt = '.mp4';
@@ -95,7 +95,7 @@ async function handleUpload(from, Gifted, conText, service) {
         } 
         else if (quotedAudio) {
             if (service !== 'catbox' && service !== 'giftedcdn' && service !== 'githubcdn') {
-                return reply(`❌ ${service} only supports images. Use ${botPrefix}catbox or ${botPrefix}giftedcdn or ${botPrefix}githubcdn  for audios and any other file type.`);
+                return reply(`⚠️ ${service} only supports images. Use ${botPrefix}catbox or ${botPrefix}giftedcdn or ${botPrefix}githubcdn  for audios and any other file type.`);
             }
             buffer = await getMediaBuffer(quotedAudio, "audio");
             fileExt = '.mp3';
@@ -105,7 +105,7 @@ async function handleUpload(from, Gifted, conText, service) {
         } 
         else if (quotedSticker) {
             if (service === 'pixhost') {
-                return reply(`❌ ${service} does not support sticker uploads. Use ${botPrefix}imgbb, ${botPrefix}catbox, ${botPrefix}giftedcdn or ${botPrefix}githubcdn instead.`);
+                return reply(`⚠️ ${service} does not support sticker uploads. Use ${botPrefix}imgbb, ${botPrefix}catbox, ${botPrefix}giftedcdn or ${botPrefix}githubcdn instead.`);
             }
             buffer = await getMediaBuffer(quotedSticker, "sticker");
             fileExt = '.webp';
@@ -116,7 +116,7 @@ async function handleUpload(from, Gifted, conText, service) {
         } 
         else if (quotedDocument) {
             if (service !== 'catbox' && service !== 'giftedcdn' && service !== 'githubcdn') {
-                return reply(`❌ ${service} only supports images. Use ${botPrefix}catbox or ${botPrefix}giftedcdn or ${botPrefix}githubcdn  for documents and any other file type.`);
+                return reply(`⚠️ ${service} only supports images. Use ${botPrefix}catbox or ${botPrefix}giftedcdn or ${botPrefix}githubcdn  for documents and any other file type.`);
             }
             buffer = await getMediaBuffer(quotedDocument, "document");
             fileExt = quotedDocument.fileName ? path.extname(quotedDocument.fileName).toLowerCase() : '.bin';
@@ -124,11 +124,11 @@ async function handleUpload(from, Gifted, conText, service) {
             mimetype = getFileContentType(fileExt);
             mediaType = 'document';
         } else {
-            return reply(`❌ Unsupported message type.`);
+            return reply(`⚠️ Unsupported message type.`);
         }
 
         if (!isImage && service !== 'catbox' && service !== 'giftedcdn' && service !== 'githubcdn') {
-            return reply(`❌ ${service} only supports image files. Use ${botPrefix}catbox or ${botPrefix}giftedcdn or ${botPrefix}githubcdn for any other file types.`);
+            return reply(`⚠️ ${service} only supports image files. Use ${botPrefix}catbox or ${botPrefix}giftedcdn or ${botPrefix}githubcdn for any other file types.`);
         }
 
         let uploadResult;
@@ -180,11 +180,11 @@ async function handleUpload(from, Gifted, conText, service) {
             ]
         });
 
-        await react("✅");
+        await react("✔️");
         
     } catch (error) {
         logError("Upload Error", error);
-        await reply(`❌ Failed to upload to ${service}. Error: ${error.message}`);
-        await react("❌");
+        await reply(`⚠️ Failed to upload to ${service}. Error: ${error.message}`);
+        await react("⚠️");
     }
 }

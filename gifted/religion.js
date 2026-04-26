@@ -16,7 +16,7 @@ gmd(
 
     const verse = q?.trim();
     if (!verse) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         "Please provide a Bible verse reference\n\nUsage:\n.bible John 3:16\n.bible John 3:16-20\n.bible John 3",
       );
@@ -30,7 +30,7 @@ gmd(
       });
 
       if (!res.data?.success || !res.data?.result) {
-        await react("❌");
+        await react("⚠️");
         return reply(
           "Failed to fetch Bible verse. Please check the reference format.",
         );
@@ -69,10 +69,10 @@ gmd(
         ],
       });
 
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Bible verse error:", e);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to fetch Bible verse: " + e.message);
     }
   },

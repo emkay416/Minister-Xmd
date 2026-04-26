@@ -13,7 +13,7 @@ gmd({
 
     try {
         if (!quoted) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please reply to/quote an image, video or sticker");
         }
 
@@ -22,7 +22,7 @@ gmd({
         const quotedVideo = quoted?.videoMessage || quoted?.message?.videoMessage;
 
         if (!quotedImg && !quotedSticker && !quotedVideo) {
-            await react("❌");
+            await react("⚠️");
             return reply("That quoted message is not an image, video or sticker");
         }
 
@@ -67,7 +67,7 @@ gmd({
                 });
 
                 await fs.unlink(mediaFile).catch(() => {});
-                await react("✅");
+                await react("✔️");
                 return Gifted.sendMessage(from, { sticker: stickerBuffer }, { quoted: mek });
 
             } else if (quotedSticker) {
@@ -88,7 +88,7 @@ gmd({
                 });
 
                 await fs.unlink(stickerFile).catch(() => {});
-                await react("✅");
+                await react("✔️");
                 return Gifted.sendMessage(from, { sticker: newStickerBuffer }, { quoted: mek });
             }
         } finally {
@@ -96,7 +96,7 @@ gmd({
         }
     } catch (e) {
         console.error("Error in sticker command:", e);
-        await react("❌");
+        await react("⚠️");
         await reply("Failed to convert to sticker");
     }
 });
@@ -113,13 +113,13 @@ gmd({
 
     try {
         if (!quotedMsg) {
-            await react("❌");
+            await react("⚠️");
             return reply("Please reply to/quote a sticker");
         }
         
         const quotedSticker = quoted?.stickerMessage || quoted?.message?.stickerMessage;
         if (!quotedSticker) {
-            await react("❌");
+            await react("⚠️");
             return reply("That quoted message is not a sticker");
         }
         
@@ -146,13 +146,13 @@ gmd({
         },
         { quoted: mek }
       );
-            await react("✅");
+            await react("✔️");
         } finally {
             if (tempFilePath) await fs.unlink(tempFilePath).catch(console.error);
         }
     } catch (e) {
         console.error("Error in toimg command:", e);
-        await react("❌");
+        await react("⚠️");
         await reply("Failed to convert sticker to image");
     }
 });
@@ -169,14 +169,14 @@ gmd({
     const { mek, reply, react, botPic, quoted, quotedMsg, newsletterUrl } = conText;
 
     if (!quotedMsg) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please reply to a video message");
     }
 
     const quotedVideo = quoted?.videoMessage || quoted?.message?.videoMessage || quoted?.pvtMessage || quoted?.message?.pvtMessage;
     
     if (!quotedVideo) {
-      await react("❌");
+      await react("⚠️");
       return reply("The quoted message doesn't contain any video");
     }
 
@@ -200,10 +200,10 @@ gmd({
         }
       }, { quoted: mek });
       
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Error in toaudio command:", e);
-      await react("❌");
+      await react("⚠️");
       const errMsg = e.message || String(e);
       if (errMsg.includes('no audio')) {
         await reply("This video has no audio track to extract.");
@@ -228,14 +228,14 @@ gmd({
     const { mek, reply, react, botPic, quoted, quotedMsg } = conText;
 
     if (!quotedMsg) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please reply to an audio message");
     }
 
     const quotedAudio = quoted?.audioMessage || quoted?.message?.audioMessage;
     
     if (!quotedAudio) {
-      await react("❌");
+      await react("⚠️");
       return reply("The quoted message doesn't contain any audio");
     }
 
@@ -251,10 +251,10 @@ gmd({
         ptt: true,
       }, { quoted: mek });
       
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Error in toptt command:", e);
-      await react("❌");
+      await react("⚠️");
       await reply("Failed to convert to voice note");
     } finally {
       if (tempFilePath) await fs.unlink(tempFilePath).catch(console.error);
@@ -274,14 +274,14 @@ gmd({
     const { mek, reply, react, botPic, quoted, quotedMsg } = conText;
 
     if (!quotedMsg) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please reply to an audio message");
     }
 
     const quotedAudio = quoted?.audioMessage || quoted?.message?.audioMessage;
     
     if (!quotedAudio) {
-      await react("❌");
+      await react("⚠️");
       return reply("The quoted message doesn't contain any audio");
     }
 
@@ -297,10 +297,10 @@ gmd({
         caption: 'Converted Video',
       }, { quoted: mek });
       
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error("Error in tovideo command:", e);
-      await react("❌");
+      await react("⚠️");
       await reply("Failed to convert audio to video");
     } finally {
       if (tempFilePath) await fs.unlink(tempFilePath).catch(console.error);

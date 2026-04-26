@@ -95,7 +95,7 @@ gmd(
 
         if (!noteContent) {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, provide content for your note.\n\nUsage: ${botPrefix}addnote <your note text>\nOr reply to a message with ${botPrefix}addnote`,
+                text: `⚠️ Hey @${getUserName(sender)}, provide content for your note.\n\nUsage: ${botPrefix}addnote <your note text>\nOr reply to a message with ${botPrefix}addnote`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
@@ -103,7 +103,7 @@ gmd(
         const note = await addNote(sender, noteContent);
         const preview = note.content.length > 30 ? note.content.slice(0, 30) + "..." : note.content;
         return await Gifted.sendMessage(from, {
-            text: `✅ Hey @${getUserName(sender)}, Note #${note.noteNumber} saved!\n\n📝 "${preview}"`,
+            text: `✔️ Hey @${getUserName(sender)}, Note #${note.noteNumber} saved!\n\n📝 "${preview}"`,
             contextInfo: await getContextInfo([sender]),
         });
     },
@@ -122,7 +122,7 @@ gmd(
 
         if (!q || isNaN(parseInt(q))) {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, provide a note number.\n\nUsage: ${botPrefix}getnote <number>`,
+                text: `⚠️ Hey @${getUserName(sender)}, provide a note number.\n\nUsage: ${botPrefix}getnote <number>`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
@@ -132,7 +132,7 @@ gmd(
 
         if (!note) {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, Note #${noteNumber} not found.`,
+                text: `⚠️ Hey @${getUserName(sender)}, Note #${noteNumber} not found.`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
@@ -225,7 +225,7 @@ gmd(
 
         if (!q || q.trim() === "") {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, provide note number and new content.\n\nUsage: ${botPrefix}updatenote <number> <new text>`,
+                text: `⚠️ Hey @${getUserName(sender)}, provide note number and new content.\n\nUsage: ${botPrefix}updatenote <number> <new text>`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
@@ -235,7 +235,7 @@ gmd(
 
         if (isNaN(noteNumber)) {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, first argument must be a note number.\n\nUsage: ${botPrefix}updatenote <number> <new text>`,
+                text: `⚠️ Hey @${getUserName(sender)}, first argument must be a note number.\n\nUsage: ${botPrefix}updatenote <number> <new text>`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
@@ -243,7 +243,7 @@ gmd(
         const newContent = parts.slice(1).join(" ");
         if (!newContent) {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, provide new content for the note.\n\nUsage: ${botPrefix}updatenote <number> <new text>`,
+                text: `⚠️ Hey @${getUserName(sender)}, provide new content for the note.\n\nUsage: ${botPrefix}updatenote <number> <new text>`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
@@ -252,13 +252,13 @@ gmd(
 
         if (!note) {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, Note #${noteNumber} not found.`,
+                text: `⚠️ Hey @${getUserName(sender)}, Note #${noteNumber} not found.`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
 
         return await Gifted.sendMessage(from, {
-            text: `✅ Hey @${getUserName(sender)}, Note #${note.noteNumber} updated!\n\n📝 "${note.content}"`,
+            text: `✔️ Hey @${getUserName(sender)}, Note #${note.noteNumber} updated!\n\n📝 "${note.content}"`,
             contextInfo: await getContextInfo([sender]),
         });
     },
@@ -277,7 +277,7 @@ gmd(
 
         if (!q || isNaN(parseInt(q))) {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, provide a note number to delete.\n\nUsage: ${botPrefix}delnote <number>`,
+                text: `⚠️ Hey @${getUserName(sender)}, provide a note number to delete.\n\nUsage: ${botPrefix}delnote <number>`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
@@ -287,13 +287,13 @@ gmd(
 
         if (!deleted) {
             return await Gifted.sendMessage(from, {
-                text: `❌ Hey @${getUserName(sender)}, Note #${noteNumber} not found.`,
+                text: `⚠️ Hey @${getUserName(sender)}, Note #${noteNumber} not found.`,
                 contextInfo: await getContextInfo([sender]),
             });
         }
 
         return await Gifted.sendMessage(from, {
-            text: `✅ Hey @${getUserName(sender)}, Note #${noteNumber} deleted!`,
+            text: `✔️ Hey @${getUserName(sender)}, Note #${noteNumber} deleted!`,
             contextInfo: await getContextInfo([sender]),
         });
     },
@@ -320,7 +320,7 @@ gmd(
         }
 
         return await Gifted.sendMessage(from, {
-            text: `✅ Hey @${getUserName(sender)}, deleted ${count} note${count > 1 ? "s" : ""}!`,
+            text: `✔️ Hey @${getUserName(sender)}, deleted ${count} note${count > 1 ? "s" : ""}!`,
             contextInfo: await getContextInfo([sender]),
         });
     },

@@ -35,9 +35,9 @@ gmd(
     _shellExec(shellCmd, { timeout: 30000, maxBuffer: 1024 * 1024 * 5 }, async (err, stdout, stderr) => {
       const output = (stdout || "") + (stderr ? `\n[stderr]\n${stderr}` : "");
       const result = err && !output.trim()
-        ? `❌ Error: ${err.message}`
+        ? `⚠️ Error: ${err.message}`
         : output.trim() || "(no output)";
-      await react("✅");
+      await react("✔️");
       await reply("```\n" + result.slice(0, 4000) + "\n```");
     });
   }
@@ -55,7 +55,7 @@ gmd(
   async (from, Gifted, conText) => {
     const { mek, reply, react, isSuperUser, body } = conText;
     if (!body.startsWith(">")) return;
-    if (!isSuperUser) return reply("❌ Owner only");
+    if (!isSuperUser) return reply("⚠️ Owner only");
 
     const code = body.slice(1).trim();
     if (!code) return reply("Usage: > <js expression>");
@@ -108,11 +108,11 @@ gmd(
       } else {
         output = String(result);
       }
-      await react("✅");
+      await react("✔️");
       await reply("```\n" + output.slice(0, 4000) + "\n```");
     } catch (err) {
-      await react("❌");
-      await reply(`❌ Error: ${err.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error: ${err.message}`);
     }
   }
 );

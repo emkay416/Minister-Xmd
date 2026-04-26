@@ -129,7 +129,7 @@ app.get("/", (req, res) => res.sendFile(__dirname + "/gift/gifted.html"));
 app.get("/health", (req, res) =>
     res.status(200).json({ status: "alive", uptime: process.uptime() }),
 );
-app.listen(PORT, () => console.log(`✅ Server Running on Port: ${PORT}`));
+app.listen(PORT, () => console.log(`✔️ Server Running on Port: ${PORT}`));
 
 setInterval(() => {
     const used = process.memoryUsage();

@@ -26,8 +26,8 @@ gmd(
         } = conText;
 
         if (!isSuperUser) {
-            await react("❌");
-            return reply("❌ Owner Only Command!");
+            await react("⚠️");
+            return reply("⚠️ Owner Only Command!");
         }
 
         try {
@@ -41,7 +41,7 @@ gmd(
             const currentHash = await getCommitHash();
 
             if (latestCommitHash === currentHash) {
-                return reply("✅ Your Bot is Already on the Latest Version!");
+                return reply("✔️ Your Bot is Already on the Latest Version!");
             }
 
             const authorName = commitData.commit.author.name;
@@ -81,7 +81,7 @@ gmd(
             fs.unlinkSync(zipPath);
             fs.rmSync(extractPath, { recursive: true, force: true });
 
-            await reply("✅ Update Complete! Bot is Restarting...");
+            await reply("✔️ Update Complete! Bot is Restarting...");
 
             setTimeout(() => {
                 process.exit(0);
@@ -92,11 +92,11 @@ gmd(
             console.error(`Update error [${status || "no-status"}]: ${msg}`);
             if (status === 404) {
                 return reply(
-                    `❌ Update Failed: GitHub repo \`${giftedRepo}\` was not found.\n\nUse *.setvar BOT_REPO owner/repo* to point to your actual repository.`,
+                    `⚠️ Update Failed: GitHub repo \`${giftedRepo}\` was not found.\n\nUse *.setvar BOT_REPO owner/repo* to point to your actual repository.`,
                 );
             }
             return reply(
-                `❌ Update Failed: ${msg}\n\nPlease try by Redeploying Manually.`,
+                `⚠️ Update Failed: ${msg}\n\nPlease try by Redeploying Manually.`,
             );
         }
     },

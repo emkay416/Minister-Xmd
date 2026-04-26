@@ -29,7 +29,7 @@ const DEFAULT_SETTINGS = {
     AUTO_READ_STATUS: "true",
     STATUS_LIKE_EMOJIS: "💛,❤️,💜,🤍,💙",
     AUTO_REPLY_STATUS: "false",
-    STATUS_REPLY_TEXT: "*ʏᴏᴜʀ sᴛᴀᴛᴜs ᴠɪᴇᴡᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ✅*",
+    STATUS_REPLY_TEXT: "*ʏᴏᴜʀ sᴛᴀᴛᴜs ᴠɪᴇᴡᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ✔️*",
     AUTO_REACT: "off",
     AUTO_REPLY: "false",
     AUTO_READ_MESSAGES: "off",
@@ -87,7 +87,7 @@ async function initializeSettings() {
     }
     if (changed || !fs.existsSync(SETTINGS_FILE)) saveToDisk();
     initialized = true;
-    console.log("✅ Bot Settings Initialized");
+    console.log("✔️ Bot Settings Initialized");
 }
 
 async function getSetting(key) {

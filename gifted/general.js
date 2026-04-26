@@ -70,7 +70,7 @@ gmd(
         }
       }
     }, { quoted: mek });*/
-    await react("✅");
+    await react("✔️");
   },
 );
 
@@ -113,7 +113,7 @@ gmd(
       );
       reply(stylishReply("Tʜᴀɴᴋ ʏᴏᴜ ꜰᴏʀ ʏᴏᴜʀ ʀᴇᴘᴏʀᴛ. Iᴛ ʜᴀs ʙᴇᴇɴ ꜰᴏʀᴡᴀʀᴅᴇᴅ ᴛᴏ ᴛʜᴇ ᴏᴡɴᴇʀ. Pʟᴇᴀsᴇ ᴡᴀɪᴛ ꜰᴏʀ ᴀ ʀᴇsᴘᴏɴsᴇ.",
       ));
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       reply(e);
       console.log(e);
@@ -216,7 +216,7 @@ gmd(
         },
       };
       await Gifted.sendMessage(stylishReply(from, giftedMess, { quoted: mek }));
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error(e);
       reply(`${e}`);
@@ -313,7 +313,7 @@ gmd(
         },
       };
       await Gifted.sendMessage(stylishReply(from, giftedMess, { quoted: mek }));
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error(e);
       reply(`${e}`);
@@ -438,7 +438,7 @@ gmd(
         },
       };
       await Gifted.sendMessage(from, giftedMess, { quoted: mek });
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       console.error(e);
       reply(`${e}`);
@@ -521,11 +521,11 @@ gmd(
         },
         { quoted: mek }
       );*/
-        await react("✅");
+        await react("✔️");
       }
     } catch (error) {
       logError("Error processing quoted message", error);
-      await reply(`❌ An error occurred while processing the message.`);
+      await reply(`⚠️ An error occurred while processing the message.`);
     }
   },
 );
@@ -571,7 +571,7 @@ gmd(
         },
       ],
     });
-    await react("✅");
+    await react("✔️");
   },
 );
 
@@ -609,13 +609,13 @@ gmd(
       const status = error?.response?.status;
       const msg = error?.response?.data?.message || error?.message || "Unknown error";
       console.error(`Repo fetch error [${status || "no-status"}]: ${msg}`);
-      await react("❌");
+      await react("⚠️");
       if (status === 404) {
         return reply(
-          `❌ GitHub repo \`${giftedRepo}\` was not found.\n\nUse *.setvar BOT_REPO owner/repo* to point to your actual repository.`,
+          `⚠️ GitHub repo \`${giftedRepo}\` was not found.\n\nUse *.setvar BOT_REPO owner/repo* to point to your actual repository.`,
         );
       }
-      return reply(`❌ Failed to fetch repo info: ${msg}`);
+      return reply(`⚠️ Failed to fetch repo info: ${msg}`);
     }
     const {
       full_name,
@@ -681,7 +681,7 @@ gmd(
           },
           { quoted: messageData },
         );
-        await react("✅");
+        await react("✔️");
       } catch (dlErr) {
         await Gifted.sendMessage(from, { text: "Failed to download repo zip: " + dlErr.message }, { quoted: messageData });
       }
@@ -695,7 +695,7 @@ gmd(
       120000,
     );
 
-    await react("✅");
+    await react("✔️");
   },
 );
 
@@ -712,7 +712,7 @@ gmd(
     const { mek, reply, react, sender, isSuperUser, getMediaBuffer } = conText;
 
     if (!isSuperUser) {
-      return reply(`❌ Owner Only Command!`);
+      return reply(`⚠️ Owner Only Command!`);
     }
 
     const quotedMsg =
@@ -784,20 +784,20 @@ gmd(
           text = quotedMsg.templateButtonReplyMessage.selectedDisplayText || "";
         }
         if (!text) {
-          return reply(`❌ Could not extract text from the quoted message.`);
+          return reply(`⚠️ Could not extract text from the quoted message.`);
         }
         mediaData = {
           text: text,
         };
       } else {
-        return reply(`❌ Unsupported message type.`);
+        return reply(`⚠️ Unsupported message type.`);
       }
 
       await Gifted.sendMessage(sender, mediaData, { quoted: mek });
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Save Error", error);
-      await reply(`❌ Failed to save the message. Error: ${error.message}`);
+      await reply(`⚠️ Failed to save the message. Error: ${error.message}`);
     }
   },
 );
@@ -823,17 +823,17 @@ gmd(
 
     const input = q?.trim();
     if (!input) {
-      await react("❌");
+      await react("⚠️");
       return reply(
-        `❌ Provide a channel link.\nUsage: *${botPrefix}chjid* https://whatsapp.com/channel/KEY`,
+        `⚠️ Provide a channel link.\nUsage: *${botPrefix}chjid* https://whatsapp.com/channel/KEY`,
       );
     }
 
     const channelMatch = input.match(/whatsapp\.com\/channel\/([A-Za-z0-9_-]+)/i);
     if (!channelMatch) {
-      await react("❌");
+      await react("⚠️");
       return reply(
-        "❌ Invalid channel link. Provide a valid WhatsApp channel link.\nExample: https://whatsapp.com/channel/ABC123",
+        "⚠️ Invalid channel link. Provide a valid WhatsApp channel link.\nExample: https://whatsapp.com/channel/ABC123",
       );
     }
 
@@ -845,9 +845,9 @@ gmd(
       const meta = await Gifted.newsletterMetadata("invite", inviteKey);
 
       if (!meta || !meta.id) {
-        await react("❌");
+        await react("⚠️");
         return reply(
-          "❌ Could not fetch channel info. The link may be invalid or the channel no longer exists.",
+          "⚠️ Could not fetch channel info. The link may be invalid or the channel no longer exists.",
         );
       }
 
@@ -897,7 +897,7 @@ gmd(
         `📢 *Channel Info*\n\n` +
         `🔖 *Name:* ${name}\n` +
         `🟢 *Status:* ${isActive ? "Active" : stateType || "Unknown"}\n` +
-        `${isVerified ? "✅ *Verified:* Yes\n" : "❌ *Verified:* No\n"}` +
+        `${isVerified ? "✔️ *Verified:* Yes\n" : "⚠️ *Verified:* No\n"}` +
         `👥 *Followers:* ${followers}\n` +
         `🆔 *JID:* \`${channelJid}\`` +
         descSection;
@@ -931,11 +931,11 @@ gmd(
       }
 
       await sendButtons(Gifted, from, sendOpts);
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("chjid error", error);
-      await react("❌");
-      await reply(`❌ Error fetching channel info: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error fetching channel info: ${error.message}`);
     }
   },
 );

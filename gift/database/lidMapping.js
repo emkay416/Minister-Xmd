@@ -35,7 +35,7 @@ async function loadPersistedLidMappings() {
             count++;
         }
         if (count > 0) {
-            console.log(`✅ Loaded ${count} persisted LID mappings into globalLidMapping`);
+            console.log(`✔️ Loaded ${count} persisted LID mappings into globalLidMapping`);
         }
     } catch (err) {
         console.error("Failed to load persisted LID mappings:", err.message);

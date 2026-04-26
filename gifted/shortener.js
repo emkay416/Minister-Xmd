@@ -70,8 +70,8 @@ for (const shortener of shorteners) {
             } = conText;
 
             if (!q || q.trim() === "") {
-                await react("❌");
-                return reply(`❌ Please provide a URL to shorten.
+                await react("⚠️");
+                return reply(`⚠️ Please provide a URL to shorten.
 
 *Usage:* .${shortener.pattern} <url>
 *Example:* .${shortener.pattern} https://example.com`);
@@ -80,9 +80,9 @@ for (const shortener of shorteners) {
             const url = q.trim();
 
             if (!url.startsWith("http://") && !url.startsWith("https://")) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
-                    `❌ Invalid URL. Please provide a valid URL starting with http:// or https://`,
+                    `⚠️ Invalid URL. Please provide a valid URL starting with http:// or https://`,
                 );
             }
 
@@ -101,9 +101,9 @@ for (const shortener of shorteners) {
                 );
 
                 if (!res.data?.success || !res.data?.result) {
-                    await react("❌");
+                    await react("⚠️");
                     return reply(
-                        `❌ Failed to shorten URL using ${shortener.name}. Try again later.`,
+                        `⚠️ Failed to shorten URL using ${shortener.name}. Try again later.`,
                     );
                 }
 
@@ -123,10 +123,10 @@ for (const shortener of shorteners) {
                     ],
                 });
 
-                await react("✅");
+                await react("✔️");
             } catch (e) {
-                await react("❌");
-                return reply(`❌ Failed to shorten URL: ${e.message}`);
+                await react("⚠️");
+                return reply(`⚠️ Failed to shorten URL: ${e.message}`);
             }
         },
     );

@@ -45,7 +45,7 @@ gmd(
       conText;
 
     if (!isSuperUser) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Owner Only Command!`);
     }
 
@@ -69,10 +69,10 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
-      await react("❌");
-      await reply(`❌ Failed: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Failed: ${error.message}`);
     }
   },
 );
@@ -90,12 +90,12 @@ gmd(
       conText;
 
     if (!isAdmin) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Admin Only Command!`);
     }
 
     if (!isGroup) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Command can only be used in groups!`);
     }
 
@@ -103,7 +103,7 @@ gmd(
     try {
       const quotedImg = quoted?.imageMessage || quoted?.message?.imageMessage;
       if (!quotedImg) {
-        await react("❌");
+        await react("⚠️");
         return reply("Please quote an image");
       }
       tempFilePath = await Gifted.downloadAndSaveMediaMessage(
@@ -134,10 +134,10 @@ gmd(
       };
 
       await Gifted.query(iqNode);
-      await react("✅");
+      await react("✔️");
       await fs.unlink(tempFilePath);
       await reply(
-        "✅ Group Profile picture updated successfully (full image)!",
+        "✔️ Group Profile picture updated successfully (full image)!",
       );
     } catch (error) {
       logError("Error updating group profile picture", error);
@@ -151,14 +151,14 @@ gmd(
         error.message.includes("forbidden")
       ) {
         await reply(
-          "❌ I need to be an admin to update group profile picture!",
+          "⚠️ I need to be an admin to update group profile picture!",
         );
       } else {
         await reply(
-          `❌ Failed to update group profile picture: ${error.message}`,
+          `⚠️ Failed to update group profile picture: ${error.message}`,
         );
       }
-      await react("❌");
+      await react("⚠️");
     }
   },
 );
@@ -175,14 +175,14 @@ gmd(
     const { mek, reply, react, sender, quoted, isSuperUser } = conText;
 
     if (!isSuperUser) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Owner Only Command!`);
     }
     let tempFilePath;
     try {
       const quotedImg = quoted?.imageMessage || quoted?.message?.imageMessage;
       if (!quotedImg) {
-        await react("❌");
+        await react("⚠️");
         return reply("Please quote an image");
       }
       tempFilePath = await Gifted.downloadAndSaveMediaMessage(
@@ -212,9 +212,9 @@ gmd(
       };
 
       await Gifted.query(iqNode);
-      await react("✅");
+      await react("✔️");
       await fs.unlink(tempFilePath);
-      await reply("✅ Profile picture updated successfully (full image)!");
+      await reply("✔️ Profile picture updated successfully (full image)!");
     } catch (error) {
       logError("Error updating profile picture", error);
 
@@ -222,8 +222,8 @@ gmd(
         await fs.unlink(tempFilePath).catch(console.error);
       }
 
-      await reply(`❌ Failed to update profile picture: ${error.message}`);
-      await react("❌");
+      await reply(`⚠️ Failed to update profile picture: ${error.message}`);
+      await react("⚠️");
     }
   },
 );
@@ -254,12 +254,12 @@ gmd(
     } = conText;
 
     if (!isSuperUser) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Owner Only Command!`);
     }
 
     if (!quotedUser) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Please reply to/quote a user or their message!`);
     }
 
@@ -335,14 +335,14 @@ gmd(
           },
           { quoted: mek },
         );
-        await react("✅");
+        await react("✔️");
       }
     } catch (error) {
       logError("Error in whois command", error);
       await reply(
-        `❌ An error occurred while fetching profile information.\nError: ${error.message}`,
+        `⚠️ An error occurred while fetching profile information.\nError: ${error.message}`,
       );
-      await react("❌");
+      await react("⚠️");
     }
   },
 );
@@ -359,14 +359,14 @@ gmd(
     const { mek, reply, react, sender, quoted, isSuperUser } = conText;
 
     if (!isSuperUser) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Owner Only Command!`);
     }
 
     try {
       const quotedImg = quoted?.imageMessage || quoted?.message?.imageMessage;
       if (!quotedImg) {
-        await react("❌");
+        await react("⚠️");
         return reply("Please quote an image");
       }
 
@@ -380,7 +380,7 @@ gmd(
           url: tempFilePath,
         });
         await reply("Profile picture updated successfully!");
-        await react("✅");
+        await react("✔️");
       } catch (modernError) {
         console.log("Modern method failed, trying legacy method...");
 
@@ -404,13 +404,13 @@ gmd(
 
         await Gifted.query(iq);
         await reply("Profile picture update requested (legacy method)");
-        await react("✅");
+        await react("✔️");
       }
       await fs.unlink(tempFilePath).catch(console.error);
     } catch (error) {
       logError("Error updating profile picture", error);
-      await reply(`❌ An error occurred: ${error.message}`);
-      await react("❌");
+      await reply(`⚠️ An error occurred: ${error.message}`);
+      await react("⚠️");
       if (tempFilePath) {
         await fs.unlink(tempFilePath).catch(console.error);
       }
@@ -442,12 +442,12 @@ gmd(
     } = conText;
 
     if (!isSuperUser) {
-      await react("❌");
+      await react("⚠️");
       return reply(`Owner Only Command!`);
     }
 
     if (!quotedMsg) {
-      await react("❌");
+      await react("⚠️");
       return reply(
         `Please reply to/quote a user to get their profile picture!`,
       );
@@ -463,7 +463,7 @@ gmd(
             "image",
           );
         } catch (error) {
-          await react("❌");
+          await react("⚠️");
           return reply(
             `User does not have profile picture or they have set it to private!`,
           );
@@ -487,12 +487,12 @@ gmd(
           },
           { quoted: mek },
         );
-        await react("✅");
+        await react("✔️");
       }
     } catch (error) {
       logError("Error processing profile picture", error);
-      await reply(`❌ An error occurred while fetching the profile picture.`);
-      await react("❌");
+      await reply(`⚠️ An error occurred while fetching the profile picture.`);
+      await react("⚠️");
     }
   },
 );
@@ -510,8 +510,8 @@ gmd(
       conText;
 
     if (!isGroup) {
-      await react("❌");
-      return reply("❌ This command only works in groups!");
+      await react("⚠️");
+      return reply("⚠️ This command only works in groups!");
     }
 
     try {
@@ -519,8 +519,8 @@ gmd(
       try {
         profilePictureUrl = await Gifted.profilePictureUrl(from, "image");
       } catch (error) {
-        await react("❌");
-        return reply("❌ This group has no profile picture set!");
+        await react("⚠️");
+        return reply("⚠️ This group has no profile picture set!");
       }
 
       await Gifted.sendMessage(
@@ -541,11 +541,11 @@ gmd(
         { quoted: mek },
       );
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("getgcpp error", error);
-      await react("❌");
-      await reply(`❌ Failed to get group picture: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Failed to get group picture: ${error.message}`);
     }
   },
 );
@@ -634,7 +634,7 @@ gmd(
       }
 
       await Gifted.sendMessage(from, msg);
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       logError("Error in vv2 command", e);
       reply(`Error: ${e.message}`);
@@ -734,7 +734,7 @@ gmd(
       }
 
       await Gifted.sendMessage(sender, msg);
-      await react("✅");
+      await react("✔️");
     } catch (e) {
       logError("Error in vv command", e);
       reply(`Error: ${e.message}`);
@@ -772,8 +772,8 @@ gmd(
       botPrefix,
     } = conText;
 
-    if (!isGroup) return reply("❌ This command only works in groups!");
-    if (!isSuperUser && !isAdmin) return reply("❌ Admin/Owner Only Command!");
+    if (!isGroup) return reply("⚠️ This command only works in groups!");
+    if (!isSuperUser && !isAdmin) return reply("⚠️ Admin/Owner Only Command!");
 
     const input = (args[0] || "").toLowerCase();
 
@@ -809,22 +809,22 @@ gmd(
         duration = 7776000;
         durationText = "90 days";
       } else {
-        return reply("❌ Invalid option. Use: on, off, 1, 7, or 90");
+        return reply("⚠️ Invalid option. Use: on, off, 1, 7, or 90");
       }
 
       await Gifted.sendMessage(from, { disappearingMessagesInChat: duration });
 
-      await react("✅");
+      await react("✔️");
       if (duration === 0) {
-        return reply("✅ Disappearing messages *disabled* for this chat.");
+        return reply("✔️ Disappearing messages *disabled* for this chat.");
       } else {
         return reply(
-          `✅ Disappearing messages *enabled* for *${durationText}*!`,
+          `✔️ Disappearing messages *enabled* for *${durationText}*!`,
         );
       }
     } catch (error) {
-      await react("❌");
-      return reply(`❌ Failed to set disappearing messages: ${error.message}`);
+      await react("⚠️");
+      return reply(`⚠️ Failed to set disappearing messages: ${error.message}`);
     }
   },
 );
@@ -850,18 +850,18 @@ gmd(
       isBotAdmin,
     } = conText;
 
-   // if (!isGroup) return reply("❌ This command only works in groups!");
-    if (!isSuperUser && !isAdmin) return reply("❌ Admin/Owner Only Command!");
+   // if (!isGroup) return reply("⚠️ This command only works in groups!");
+    if (!isSuperUser && !isAdmin) return reply("⚠️ Admin/Owner Only Command!");
 
     if (!quotedMsg || !quotedKey)
-      return reply("❌ Please quote a message to delete!");
+      return reply("⚠️ Please quote a message to delete!");
 
     try {
       const isBotMessage = quotedKey.fromMe;
 
       if (!isBotMessage && !isBotAdmin) {
         return reply(
-          "❌ Bot needs admin rights to delete others' messages in groups!",
+          "⚠️ Bot needs admin rights to delete others' messages in groups!",
         );
       }
 
@@ -869,10 +869,10 @@ gmd(
       if (mek?.key) {
         await Gifted.sendMessage(from, { delete: mek.key });
       }
-      await react("✅");
+      await react("✔️");
     } catch (error) {
-      await react("❌");
-      return reply(`❌ Failed to delete message: ${error.message}`);
+      await react("⚠️");
+      return reply(`⚠️ Failed to delete message: ${error.message}`);
     }
   },
 );
@@ -888,7 +888,7 @@ gmd(
   async (from, Gifted, conText) => {
     const { reply, react, isSuperUser } = conText;
 
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
 
     try {
       await react("⏳");
@@ -927,10 +927,10 @@ gmd(
         }
       }
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
-      await react("❌");
-      return reply(`❌ Failed to fetch groups: ${error.message}`);
+      await react("⚠️");
+      return reply(`⚠️ Failed to fetch groups: ${error.message}`);
     }
   },
 );
@@ -956,7 +956,7 @@ gmd(
     const { isJidGroup } = require("gifted-baileys");
     const { convertLidToJid } = require("../gift/connection/serializer");
 
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
 
     let targetJid;
     let rawTarget;
@@ -973,7 +973,7 @@ gmd(
 
     if (!rawTarget) {
       return reply(
-        "❌ Please reply to a message, mention someone, or provide a number!",
+        "⚠️ Please reply to a message, mention someone, or provide a number!",
       );
     }
 
@@ -984,22 +984,22 @@ gmd(
 
     const num = rawTarget.split("@")[0].replace(/[^0-9]/g, "");
     if (!num || num.length < 6) {
-      return reply("❌ Could not determine valid phone number!");
+      return reply("⚠️ Could not determine valid phone number!");
     }
     targetJid = `${num}@s.whatsapp.net`;
 
     if (superUser && superUser.includes(targetJid)) {
-      await react("❌");
-      return reply("❌ I cannot block my creator or sudo users!");
+      await react("⚠️");
+      return reply("⚠️ I cannot block my creator or sudo users!");
     }
 
     try {
       await Gifted.updateBlockStatus(targetJid, "block");
-      await react("✅");
-      return reply(`✅ Blocked @${num}`, { mentions: [targetJid] });
+      await react("✔️");
+      return reply(`✔️ Blocked @${num}`, { mentions: [targetJid] });
     } catch (error) {
-      await react("❌");
-      return reply(`❌ Failed to block: ${error.message}`);
+      await react("⚠️");
+      return reply(`⚠️ Failed to block: ${error.message}`);
     }
   },
 );
@@ -1008,7 +1008,7 @@ gmd(
   {
     pattern: "unblock",
     aliases: ["unblockuser"],
-    react: "✅",
+    react: "✔️",
     category: "owner",
     description: "Unblock a user. Reply to their message or provide number",
   },
@@ -1018,7 +1018,7 @@ gmd(
     const { isJidGroup } = require("gifted-baileys");
     const { convertLidToJid } = require("../gift/connection/serializer");
 
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
 
     let targetJid;
     let rawTarget;
@@ -1035,7 +1035,7 @@ gmd(
 
     if (!rawTarget) {
       return reply(
-        "❌ Please reply to a message, mention someone, or provide a number!",
+        "⚠️ Please reply to a message, mention someone, or provide a number!",
       );
     }
 
@@ -1046,17 +1046,17 @@ gmd(
 
     const num = rawTarget.split("@")[0].replace(/[^0-9]/g, "");
     if (!num || num.length < 6) {
-      return reply("❌ Could not determine valid phone number!");
+      return reply("⚠️ Could not determine valid phone number!");
     }
     targetJid = `${num}@s.whatsapp.net`;
 
     try {
       await Gifted.updateBlockStatus(targetJid, "unblock");
-      await react("✅");
-      return reply(`✅ Unblocked @${num}`, { mentions: [targetJid] });
+      await react("✔️");
+      return reply(`✔️ Unblocked @${num}`, { mentions: [targetJid] });
     } catch (error) {
-      await react("❌");
-      return reply(`❌ Failed to unblock: ${error.message}`);
+      await react("⚠️");
+      return reply(`⚠️ Failed to unblock: ${error.message}`);
     }
   },
 );
@@ -1073,7 +1073,7 @@ gmd(
     const { reply, react, isSuperUser } = conText;
     const { convertLidToJid } = require("../gift/connection/serializer");
 
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
 
     try {
       const blockedList = await Gifted.fetchBlocklist();
@@ -1091,11 +1091,11 @@ gmd(
         message += `${index + 1}. @${jid.split("@")[0]}\n`;
       });
 
-      await react("✅");
+      await react("✔️");
       return reply(message, { mentions: convertedList });
     } catch (error) {
-      await react("❌");
-      return reply(`❌ Failed to fetch blocklist: ${error.message}`);
+      await react("⚠️");
+      return reply(`⚠️ Failed to fetch blocklist: ${error.message}`);
     }
   },
 );
@@ -1126,11 +1126,11 @@ gmd(
     const { downloadMediaMessage } = require("../gift/connection/serializer");
     const { isJidGroup } = require("gifted-baileys");
 
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
-    if (!quotedMsg) return reply("❌ Please quote a message to forward!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
+    if (!quotedMsg) return reply("⚠️ Please quote a message to forward!");
     if (!args[0])
       return reply(
-        `❌ Please provide a number or group JID!\n\nUsage: ${botPrefix}forward 254712345678 [caption]`,
+        `⚠️ Please provide a number or group JID!\n\nUsage: ${botPrefix}forward 254712345678 [caption]`,
       );
 
     try {
@@ -1199,7 +1199,7 @@ gmd(
         }
 
         if (!buffer || buffer.length === 0) {
-          return reply("❌ Failed to download media!");
+          return reply("⚠️ Failed to download media!");
         }
 
         const originalCaption = mediaMsg?.caption || "";
@@ -1241,16 +1241,16 @@ gmd(
           await Gifted.sendMessage(targetJid, { sticker: buffer });
         }
       } else {
-        return reply(`❌ Unsupported message type: ${msgType}`);
+        return reply(`⚠️ Unsupported message type: ${msgType}`);
       }
 
-      await react("✅");
+      await react("✔️");
       const targetName =
         targetJid === "status@broadcast" ? "status" : targetJid.split("@")[0];
-      return reply(`✅ Message forwarded to ${targetName}!`);
+      return reply(`✔️ Message forwarded to ${targetName}!`);
     } catch (error) {
-      await react("❌");
-      return reply(`❌ Failed to forward: ${error.message}`);
+      await react("⚠️");
+      return reply(`⚠️ Failed to forward: ${error.message}`);
     }
   },
 );
@@ -1268,9 +1268,9 @@ gmd(
     const { reply, react, isSuperUser, quotedMsg, q, mek } = conText;
     const { downloadMediaMessage } = require("../gift/connection/serializer");
 
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
     if (!quotedMsg)
-      return reply("❌ Please quote a message to post to status!");
+      return reply("⚠️ Please quote a message to post to status!");
 
     try {
       const statusJid = "status@broadcast";
@@ -1304,7 +1304,7 @@ gmd(
 
         const buffer = await downloadMediaMessage(fakeMsg, Gifted);
         if (!buffer) {
-          return reply("❌ Failed to download media!");
+          return reply("⚠️ Failed to download media!");
         }
 
         const originalCaption = quotedMsg[msgType]?.caption || "";
@@ -1327,15 +1327,15 @@ gmd(
         }
       } else {
         return reply(
-          `❌ Only text, images, and videos can be posted to status!`,
+          `⚠️ Only text, images, and videos can be posted to status!`,
         );
       }
 
-      await react("✅");
-      return reply("✅ Posted to your status!");
+      await react("✔️");
+      return reply("✔️ Posted to your status!");
     } catch (error) {
-      await react("❌");
-      return reply(`❌ Failed to post to status: ${error.message}`);
+      await react("⚠️");
+      return reply(`⚠️ Failed to post to status: ${error.message}`);
     }
   },
 );
@@ -1352,20 +1352,20 @@ gmd(
     const { reply, react, q, isSuperUser, mek, botName, newsletterJid } =
       conText;
 
-    if (!isSuperUser) return reply("❌ Owner Only Command!");
+    if (!isSuperUser) return reply("⚠️ Owner Only Command!");
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply(
-        "❌ Please provide a group invite link.\nExample: .join https://chat.whatsapp.com/ABC123xyz",
+        "⚠️ Please provide a group invite link.\nExample: .join https://chat.whatsapp.com/ABC123xyz",
       );
     }
 
     const linkMatch = q.match(/chat\.whatsapp\.com\/([a-zA-Z0-9]+)/);
     if (!linkMatch) {
-      await react("❌");
+      await react("⚠️");
       return reply(
-        "❌ Invalid group invite link. Please provide a valid WhatsApp group link.",
+        "⚠️ Invalid group invite link. Please provide a valid WhatsApp group link.",
       );
     }
 
@@ -1375,27 +1375,27 @@ gmd(
       const groupId = await Gifted.groupAcceptInvite(inviteCode);
 
       if (groupId) {
-        await react("✅");
-        await reply(`✅ Successfully joined group!\n\n📍 Group ID: ${groupId}`);
+        await react("✔️");
+        await reply(`✔️ Successfully joined group!\n\n📍 Group ID: ${groupId}`);
       } else {
-        await react("❌");
+        await react("⚠️");
         await reply(
-          "❌ Failed to join the group. The invite link may be invalid or expired.",
+          "⚠️ Failed to join the group. The invite link may be invalid or expired.",
         );
       }
     } catch (error) {
-      await react("❌");
+      await react("⚠️");
       const errMsg = error.message || String(error);
 
       if (errMsg.includes("conflict") || errMsg.includes("already")) {
-        return reply("❌ Bot is already a member of this group.");
+        return reply("⚠️ Bot is already a member of this group.");
       } else if (errMsg.includes("gone") || errMsg.includes("expired")) {
-        return reply("❌ This invite link has expired or been revoked.");
+        return reply("⚠️ This invite link has expired or been revoked.");
       } else if (errMsg.includes("forbidden")) {
-        return reply("❌ Bot is not allowed to join this group.");
+        return reply("⚠️ Bot is not allowed to join this group.");
       }
 
-      return reply(`❌ Failed to join group: ${errMsg}`);
+      return reply(`⚠️ Failed to join group: ${errMsg}`);
     }
   },
 );
@@ -1443,8 +1443,8 @@ gmd(
     const { q, mek, reply, react, isSuperUser, quotedUser, setSudo } = conText;
 
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     let targetNumber = null;
@@ -1465,18 +1465,18 @@ gmd(
     }
 
     if (!targetNumber || targetNumber.length < 6) {
-      await react("❌");
+      await react("⚠️");
       return reply(
-        "❌ Please reply to a user or provide a number!\nExample: .setsudo 254712345678",
+        "⚠️ Please reply to a user or provide a number!\nExample: .setsudo 254712345678",
       );
     }
 
     if (DEV_NUMBERS.includes(targetNumber)) {
-      await react("❌");
+      await react("⚠️");
       return Gifted.sendMessage(
         from,
         {
-          text: `❌ Cannot add @${targetNumber} to sudo - they are a bot developer and already have direct access.`,
+          text: `⚠️ Cannot add @${targetNumber} to sudo - they are a bot developer and already have direct access.`,
           mentions: [`${targetNumber}@s.whatsapp.net`],
         },
         { quoted: mek },
@@ -1486,9 +1486,9 @@ gmd(
     try {
       const [result] = await Gifted.onWhatsApp(targetNumber);
       if (!result || !result.exists) {
-        await react("❌");
+        await react("⚠️");
         return reply(
-          `❌ The number ${targetNumber} is not registered on WhatsApp.`,
+          `⚠️ The number ${targetNumber} is not registered on WhatsApp.`,
         );
       }
     } catch (err) {
@@ -1501,7 +1501,7 @@ gmd(
     try {
       const added = await setSudo(targetNumber);
       const msg = added
-        ? `✅ Added @${targetNumber} to sudo list.`
+        ? `✔️ Added @${targetNumber} to sudo list.`
         : `⚠️ @${targetNumber} is already in sudo list.`;
 
       await Gifted.sendMessage(
@@ -1512,11 +1512,11 @@ gmd(
         },
         { quoted: mek },
       );
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("setsudo error", error);
-      await react("❌");
-      await reply(`❌ Error: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -1533,8 +1533,8 @@ gmd(
     const { q, mek, reply, react, isSuperUser, quotedUser, delSudo } = conText;
 
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     let targetNumber = null;
@@ -1555,18 +1555,18 @@ gmd(
     }
 
     if (!targetNumber || targetNumber.length < 6) {
-      await react("❌");
+      await react("⚠️");
       return reply(
-        "❌ Please reply to a user or provide a number!\nExample: .delsudo 254712345678",
+        "⚠️ Please reply to a user or provide a number!\nExample: .delsudo 254712345678",
       );
     }
 
     if (DEV_NUMBERS.includes(targetNumber)) {
-      await react("❌");
+      await react("⚠️");
       return Gifted.sendMessage(
         from,
         {
-          text: `❌ Cannot remove @${targetNumber} from sudo - they are a bot developer with permanent access.`,
+          text: `⚠️ Cannot remove @${targetNumber} from sudo - they are a bot developer with permanent access.`,
           mentions: [`${targetNumber}@s.whatsapp.net`],
         },
         { quoted: mek },
@@ -1576,7 +1576,7 @@ gmd(
     try {
       const removed = await delSudo(targetNumber);
       const msg = removed
-        ? `❌ Removed @${targetNumber} from sudo list.`
+        ? `⚠️ Removed @${targetNumber} from sudo list.`
         : `⚠️ @${targetNumber} is not in the sudo list.`;
 
       await Gifted.sendMessage(
@@ -1587,11 +1587,11 @@ gmd(
         },
         { quoted: mek },
       );
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("delsudo error", error);
-      await react("❌");
-      await reply(`❌ Error: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -1608,14 +1608,14 @@ gmd(
     const { mek, reply, react, isSuperUser, q, botPrefix } = conText;
 
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply(
-        `❌ Please provide a command name!\nExample: ${botPrefix}cmd owner`,
+        `⚠️ Please provide a command name!\nExample: ${botPrefix}cmd owner`,
       );
     }
 
@@ -1644,9 +1644,9 @@ gmd(
       }
 
       if (!commandData) {
-        await react("❌");
+        await react("⚠️");
         return reply(
-          `❌ Command "${commandName}" not found!\n\nTotal commands: ${allCommands.length} (${regularCmds.length} regular + ${bodyCmds.length} body)`,
+          `⚠️ Command "${commandName}" not found!\n\nTotal commands: ${allCommands.length} (${regularCmds.length} regular + ${bodyCmds.length} body)`,
         );
       }
 
@@ -1774,11 +1774,11 @@ gmd(
       Gifted.ev.on("messages.upsert", handleResponse);
       setTimeout(() => Gifted.ev.off("messages.upsert", handleResponse), 5 * 60 * 1000);
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("getcmd error", error);
-      await react("❌");
-      await reply(`❌ Error: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -1796,8 +1796,8 @@ gmd(
     const { sendButtons } = require("gifted-btns");
 
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     try {
@@ -1820,20 +1820,20 @@ gmd(
           const meta = await Gifted.groupGetInviteInfo(code);
           finalResult = meta?.id || null;
           label = "Group JID";
-          if (!finalResult) return reply("❌ Could not resolve group JID from that link.");
+          if (!finalResult) return reply("⚠️ Could not resolve group JID from that link.");
         } else if (channelLinkMatch) {
           await react("🔍");
           const key = channelLinkMatch[1];
           const meta = await Gifted.newsletterMetadata("invite", key);
           finalResult = meta?.id || null;
           label = "Channel JID";
-          if (!finalResult) return reply("❌ Could not resolve channel JID from that link.");
+          if (!finalResult) return reply("⚠️ Could not resolve channel JID from that link.");
         } else if (phoneMatch) {
           finalResult = `${phoneMatch[1]}@s.whatsapp.net`;
           label = "User JID";
         } else {
           return reply(
-            `❌ Unrecognised input.\n\nUsage:\n• *.jid* — current chat\n• *.jid 254711111111* — user JID\n• *.jid chat.whatsapp.com/CODE* — group JID\n• *.jid whatsapp.com/channel/KEY* — channel JID\n• Quote a user message`,
+            `⚠️ Unrecognised input.\n\nUsage:\n• *.jid* — current chat\n• *.jid 254711111111* — user JID\n• *.jid chat.whatsapp.com/CODE* — group JID\n• *.jid whatsapp.com/channel/KEY* — channel JID\n• Quote a user message`,
           );
         }
       } else if (quotedUser) {
@@ -1870,11 +1870,11 @@ gmd(
         ],
       });
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("getjid error", error);
-      await react("❌");
-      await reply(`❌ Error: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -1892,15 +1892,15 @@ gmd(
     const { q, reply, react, isSuperUser, isGroup, groupName } = conText;
 
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     try {
       if (q && q.includes("@g.us")) {
         const meta = groupCache.get(q);
         if (!meta) {
-          return reply(`❌ No cached metadata found for: ${q}`);
+          return reply(`⚠️ No cached metadata found for: ${q}`);
         }
 
         let msg = `╭━━━━━━━━━━━╮\n`;
@@ -1917,7 +1917,7 @@ gmd(
       } else if (q === "all" || (!q && !isGroup)) {
         const keys = groupCache.keys();
         if (keys.length === 0) {
-          return reply("❌ No cached groups found.");
+          return reply("⚠️ No cached groups found.");
         }
 
         let msg = `╭━━━━━━━━━━━╮\n`;
@@ -1940,7 +1940,7 @@ gmd(
       } else if (isGroup) {
         const meta = groupCache.get(from);
         if (!meta) {
-          return reply(`❌ No cached metadata for this group.`);
+          return reply(`⚠️ No cached metadata for this group.`);
         }
 
         let msg = `╭━━━━━━━━━━━╮\n`;
@@ -1957,12 +1957,12 @@ gmd(
         return reply(msg);
       } else {
         return reply(
-          "❌ Usage:\n• In group: .cachedmeta\n• Outside: .cachedmeta all\n• Specific: .cachedmeta <groupJid>",
+          "⚠️ Usage:\n• In group: .cachedmeta\n• Outside: .cachedmeta all\n• Specific: .cachedmeta <groupJid>",
         );
       }
     } catch (error) {
-      await react("❌");
-      await reply(`❌ Error: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -1980,20 +1980,20 @@ gmd(
     const { sendButtons } = require("gifted-btns");
 
     if (!isGroup) {
-      await react("❌");
-      return reply("❌ Group Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Group Only Command!");
     }
 
     if (!q && !quotedUser) {
-      await react("❌");
+      await react("⚠️");
       return reply(
-        "❌ Please quote a user, mention them or provide a lid to convert to jid!",
+        "⚠️ Please quote a user, mention them or provide a lid to convert to jid!",
       );
     }
 
     if (!isSuperUser) {
-      await react("❌");
-      return reply("❌ Owner Only Command!");
+      await react("⚠️");
+      return reply("⚠️ Owner Only Command!");
     }
 
     try {
@@ -2030,11 +2030,11 @@ gmd(
         ],
       });
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("getlid error", error);
-      await react("❌");
-      await reply(`❌ Error: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );
@@ -2052,8 +2052,8 @@ gmd(
 
     try {
       if (!isSuperUser) {
-        await react("❌");
-        return reply("❌ Owner Only Command!");
+        await react("⚠️");
+        return reply("⚠️ Owner Only Command!");
       }
 
       const sudoList = await getSudoNumbers();
@@ -2071,11 +2071,11 @@ gmd(
       msg += `\n*Total: ${sudoList.length}*`;
 
       await reply(msg);
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("getsudo error", error);
-      await react("❌");
-      await reply(`❌ Error: ${error.message}`);
+      await react("⚠️");
+      await reply(`⚠️ Error: ${error.message}`);
     }
   },
 );

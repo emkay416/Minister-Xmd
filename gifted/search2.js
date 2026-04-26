@@ -39,7 +39,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a search query for images");
     }
 
@@ -52,7 +52,7 @@ gmd(
         !res.data?.results ||
         res.data.results.length === 0
       ) {
-        await react("❌");
+        await react("⚠️");
         return reply("No images found. Please try a different query.");
       }
 
@@ -76,10 +76,10 @@ gmd(
         }
       }
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Google image search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search images. Please try again.");
     }
   },
@@ -98,7 +98,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a search query for photos");
     }
 
@@ -111,7 +111,7 @@ gmd(
         !res.data?.results ||
         res.data.results.length === 0
       ) {
-        await react("❌");
+        await react("⚠️");
         return reply("No photos found. Please try a different query.");
       }
 
@@ -137,10 +137,10 @@ gmd(
         }
       }
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Unsplash search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search Unsplash. Please try again.");
     }
   },
@@ -165,7 +165,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a wallpaper category or search query");
     }
 
@@ -178,7 +178,7 @@ gmd(
         !res.data?.results ||
         res.data.results.length === 0
       ) {
-        await react("❌");
+        await react("⚠️");
         return reply("No wallpapers found. Please try a different query.");
       }
 
@@ -207,10 +207,10 @@ gmd(
         }
       }
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Wallpaper search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search wallpapers. Please try again.");
     }
   },
@@ -237,7 +237,7 @@ gmd(
     } = conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a location name");
     }
 
@@ -246,7 +246,7 @@ gmd(
       const res = await axios.get(apiUrl, { timeout: 60000 });
 
       if (!res.data?.success || !res.data?.result) {
-        await react("❌");
+        await react("⚠️");
         return reply(
           "Could not get weather for that location. Please try a different location.",
         );
@@ -281,10 +281,10 @@ gmd(
       txt += `> *${botFooter}*`;
 
       await reply(txt);
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Weather search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to get weather data. Please try again.");
     }
   },
@@ -311,7 +311,7 @@ gmd(
     } = conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a package name");
     }
 
@@ -320,7 +320,7 @@ gmd(
       const res = await axios.get(apiUrl, { timeout: 60000 });
 
       if (!res.data?.success || !res.data?.result) {
-        await react("❌");
+        await react("⚠️");
         return reply("Package not found. Please check the package name.");
       }
 
@@ -373,7 +373,7 @@ gmd(
               },
               { quoted: messageData },
             );
-            await react("✅");
+            await react("✔️");
           } catch (dlErr) {
             await reply("Failed to download package: " + dlErr.message);
           }
@@ -389,10 +389,10 @@ gmd(
         await reply(txt);
       }
 
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("NPM search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search NPM. Please try again.");
     }
   },
@@ -411,7 +411,7 @@ gmd(
       conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a search query");
     }
 
@@ -424,7 +424,7 @@ gmd(
         !res.data?.results ||
         res.data.results.length === 0
       ) {
-        await react("❌");
+        await react("⚠️");
         return reply("No stories found. Please try a different query.");
       }
 
@@ -487,10 +487,10 @@ gmd(
       await Gifted.relayMessage(from, message.message, {
         messageId: message.key.id,
       });
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Wattpad search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search Wattpad. Please try again.");
     }
   },
@@ -518,7 +518,7 @@ gmd(
     } = conText;
 
     if (!q) {
-      await react("❌");
+      await react("⚠️");
       return reply("Please provide a song or artist name to search");
     }
 
@@ -532,7 +532,7 @@ gmd(
         !Array.isArray(res.data.results) ||
         res.data.results.length === 0
       ) {
-        await react("❌");
+        await react("⚠️");
         const errorMsg =
           res.data?.results?.msg ||
           "No tracks found. Please try a different query.";
@@ -591,10 +591,10 @@ gmd(
         () => Gifted.ev.off("messages.upsert", handleResponse),
         300000,
       );
-      await react("✅");
+      await react("✔️");
     } catch (error) {
       logError("Spotify search error", error);
-      await react("❌");
+      await react("⚠️");
       return reply("Failed to search Spotify. Please try again.");
     }
   },

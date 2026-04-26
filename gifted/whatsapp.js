@@ -41,8 +41,8 @@ gmd(
         const { sender, mek, reply, react, q, botPrefix } = conText;
 
         if (!q || q.trim() === "") {
-            await react("❌");
-            return reply(`❌ Please provide a phone number.
+            await react("⚠️");
+            return reply(`⚠️ Please provide a phone number.
 
 *Usage:* ${botPrefix}onwa <number>
 *Example:* ${botPrefix}onwa 254712345678
@@ -53,8 +53,8 @@ _Include country code without + or spaces_`);
         const num = q.trim().replace(/[^0-9]/g, "");
 
         if (num.length < 7 || num.length > 15) {
-            await react("❌");
-            return reply(`❌ Invalid phone number format.
+            await react("⚠️");
+            return reply(`⚠️ Invalid phone number format.
 
 Please provide a valid number with country code.
 *Example:* .onwa 254712345678`);
@@ -66,16 +66,16 @@ Please provide a valid number with country code.
             const [result] = await Gifted.onWhatsApp(num);
 
             if (result && result.exists) {
-                await react("✅");
-                return reply(`✅ *Number Found on WhatsApp*
+                await react("✔️");
+                return reply(`✔️ *Number Found on WhatsApp*
 
 📞 *Number:* ${num}
 🆔 *JID:* ${result.jid}
 
 _This number is registered on WhatsApp._`);
             } else {
-                await react("❌");
-                return reply(`❌ *Not on WhatsApp*
+                await react("⚠️");
+                return reply(`⚠️ *Not on WhatsApp*
 
 📞 *Number:* ${num}
 
@@ -112,8 +112,8 @@ gmd(
             const groupName = groupMetadata?.subject || "Group";
 
             if (participants.length === 0) {
-                await react("❌");
-                return reply("❌ No participants found in this group.");
+                await react("⚠️");
+                return reply("⚠️ No participants found in this group.");
             }
 
             let vcfContent = "";
@@ -136,9 +136,9 @@ gmd(
             const count = index - 1;
 
             if (count === 0) {
-                await react("❌");
+                await react("⚠️");
                 return reply(
-                    "❌ Could not extract any valid contacts from this group.",
+                    "⚠️ Could not extract any valid contacts from this group.",
                 );
             }
 
@@ -155,10 +155,10 @@ gmd(
                 { quoted: mek },
             );
 
-            await react("✅");
+            await react("✔️");
         } catch (err) {
-            await react("❌");
-            return reply(`❌ Failed to export contacts: ${err.message}`);
+            await react("⚠️");
+            return reply(`⚠️ Failed to export contacts: ${err.message}`);
         }
     },
 );
