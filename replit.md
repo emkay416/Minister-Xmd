@@ -1,10 +1,10 @@
-# Atassa-MD WhatsApp Bot
+# Minister-Xmd WhatsApp Bot
 
 A multi-device WhatsApp bot built with Node.js + Baileys, packaged with an Express web server.
 
 ## Stack
 - Node.js 20 (CommonJS)
-- Express server on port 5000 (host `0.0.0.0` via default), serving `gift/gifted.html` at `/` and `/health`
+- Express server on port 5000 (host `0.0.0.0` via default), serving `gift/minister.html` at `/` and `/health`
 - Baileys (`gifted-baileys`) for WhatsApp connection
 - PostgreSQL (Neon) via `DATABASE_URL`, falling back to local SQLite at `gift/database/database.db`
 

@@ -18,7 +18,7 @@ gmd(
   {
     pattern: "ping",
     aliases: ["pi", "p"],
-    react: "🏃",
+    react: "💣",
     category: "general",
     description: "Check bot response speed",
   },
@@ -42,12 +42,11 @@ gmd(
     const responseTime = Math.floor(elapsed[0] * 1000 + elapsed[1] / 1000000);
 
     await sendButtons(Gifted, from, {
-      title: "Bot Speed",
-      text: `☄️ Latency: ${responseTime}ms`,
-      Uᴘᴛɪᴍᴇ :`${monospace(uptime)}`,
-      footer: `> *${botFooter}*`,
+      title: stylishReply("Bot Latency"),
+      text: stylishReply(`💣 Latency: ${responseTime}ms`),
+      footer:stylishReply( `${botFooter}`),
       buttons: [
-        { id: `${botPrefix}uptime`, text: "⏱️ Uptime" },
+        { id: `${botPrefix}uptime`, text: "🌊 Runtime" },
         {
           name: "cta_url",
           buttonParamsJson: JSON.stringify({
@@ -70,7 +69,11 @@ gmd(
         }
       }
     }, { quoted: mek });*/
+<<<<<<< HEAD
     await react("✔️");
+=======
+    await react("💥");
+>>>>>>> ea8dd3f47e5f36303050b06f93100352f418322f
   },
 );
 
@@ -189,16 +192,16 @@ gmd(
 
 *🧑‍💻 :* ${monospace(botName)} Iꜱ Aᴠᴀɪʟᴀʙʟᴇ
 
-┏▣ ◈ *ALL MENU* ◈
-│➽ Lɪꜱᴛ
-│➽ Cᴀᴛᴇɢᴏʀʏ
-│➽ Hᴇʟᴘ
-│➽ Aʟɪᴠᴇ
-│➽ Uᴘᴛɪᴍᴇ
-│➽ Wᴇᴀᴛʜᴇʀ
-│➽ Lɪɴᴋ
-│➽ Cᴘᴜ
-│➽ Rᴇᴘᴏꜱɪᴛᴏʀʏ
+┏▣ ✦ *ALL MENU* ✦
+│*︎ Lɪꜱᴛ
+│*︎ Cᴀᴛᴇɢᴏʀʏ
+│*︎ Hᴇʟᴘ
+│*︎ Aʟɪᴠᴇ
+│*︎ Uᴘᴛɪᴍᴇ
+│*︎ Wᴇᴀᴛʜᴇʀ
+│*︎ Lɪɴᴋ
+│*︎ Cᴘᴜ
+│*︎ Rᴇᴘᴏꜱɪᴛᴏʀʏ
 ┗▣`;
 
       const giftedMess = {
@@ -281,7 +284,7 @@ gmd(
       ).length;
 
       let list = `
-┏▣ ◈ *${monospace(botName)}* 〕◈
+┏▣ ✦ *${monospace(botName)}* 〕✦
 │ ✦ *Mᴏᴅᴇ* : ${monospace(botMode)}
 │ ✦ *Pʀᴇғɪx* : [ ${monospace(botPrefix)} ]
 │ ✦ *Usᴇʀ* : ${monospace(pushName)}
@@ -325,7 +328,7 @@ gmd(
   {
     pattern: "menu",
     aliases: ["help", "men", "allmenu"],
-    react: "🪀",
+    react: "🗯",
     category: "general",
     description: "Fetch bot main menu",
   },
@@ -395,23 +398,20 @@ gmd(
         categorized[cat].sort((a, b) => a.pattern.localeCompare(b.pattern));
       }
 
-      let header = `┏▣ ◈ *${monospace(botName)}* ◈
+      let header = `┏▣ ✦ *${monospace(botName)}* ✦
 ┃ *Mᴏᴅᴇ:*  ${monospace(botMode)}
 ┃ *Pʀᴇғɪx:*  [ ${monospace(botPrefix)} ]
-┃ *Usᴇʀ:*  ${monospace(pushName)}
 ┃ *Pʟᴜɢɪɴs:*  ${monospace(totalCommands.toString())}
-┃ *Tɪᴍᴇ Zᴏɴᴇ:*  ${monospace(timeZone)}
 ┃ *Dᴀᴛᴇ Tᴏᴅᴀʏ:*  ${monospace(date)}
 ┃ *Tɪᴍᴇ Nᴏᴡ:*  ${monospace(time)}
-┃ *Uᴘᴛɪᴍᴇ:*  ${monospace(uptime)}
 ┗▣\n${readmore}\n`;
 
       const formatCategory = (category, gmds) => {
-        const title = `┏▣ ◈ *${monospace(category.toUpperCase())}* ◈ \n`;
+        const title = `┏▣ ✦ *${monospace(category.toUpperCase())}* ✦ \n`;
         const body = gmds
           .map((gmd) => {
             const prefix = gmd.isBody ? "" : botPrefix;
-            return `│➽ ${monospace(prefix + gmd.pattern)}`;
+            return `│✦ ${monospace(prefix + gmd.pattern)}`;
           })
           .join("\n");
         const footer = `┗▣\n`;
@@ -438,7 +438,11 @@ gmd(
         },
       };
       await Gifted.sendMessage(from, giftedMess, { quoted: mek });
+<<<<<<< HEAD
       await react("✔️");
+=======
+      await react("🗯");
+>>>>>>> ea8dd3f47e5f36303050b06f93100352f418322f
     } catch (e) {
       console.error(e);
       reply(`${e}`);
@@ -450,7 +454,7 @@ gmd(
   {
     pattern: "return",
     aliases: ["details", "det", "ret"],
-    react: "⚡",
+    react: "💣",
     category: "owner",
     description:
       "Displays the full raw quoted message using Baileys structure.",
@@ -521,7 +525,11 @@ gmd(
         },
         { quoted: mek }
       );*/
+<<<<<<< HEAD
         await react("✔️");
+=======
+        await react("🗯");
+>>>>>>> ea8dd3f47e5f36303050b06f93100352f418322f
       }
     } catch (error) {
       logError("Error processing quoted message", error);
@@ -558,10 +566,10 @@ gmd(
 
     await sendButtons(Gifted, from, {
       title: "",
-      text: `⏱️ Uptime: ${days}d ${hours}h ${minutes}m ${seconds}s`,
-      footer: `> *${botFooter}*`,
+      text: stylishReply(`🌊 Runtime: ${days}d ${hours}h ${minutes}m ${seconds}s`),
+      footer: stylishReply(` ${botFooter}`),
       buttons: [
-        { id: `${botPrefix}ping`, text: "⚡ Ping" },
+        { id: `${botPrefix}ping`, text: "💣 Latency" },
         {
           name: "cta_url",
           buttonParamsJson: JSON.stringify({
@@ -571,7 +579,11 @@ gmd(
         },
       ],
     });
+<<<<<<< HEAD
     await react("✔️");
+=======
+    await react("🗯");
+>>>>>>> ea8dd3f47e5f36303050b06f93100352f418322f
   },
 );
 
