@@ -403,7 +403,7 @@ gmd(
 ┗▣\n${readmore}\n`;
 
       const formatCategory = (category, gmds) => {
-        const title = `┏▣ ✦ *${monospace(category.toUpperCase())}* ✦ \n`;
+        const title = `┏▣ ✦ ${monospace(category.toUpperCase())} ✦ \n`;
         const body = gmds
           .map((gmd) => {
             const prefix = gmd.isBody ? "" : botPrefix;
@@ -421,7 +421,7 @@ gmd(
 
       const giftedMess = {
         image: { url: botPic },
-        caption: `${menu.trim()}\n\n> *${botFooter}*`,
+        caption: `${menu.trim()}\n\n> ${botFooter}`,
         contextInfo: {
           mentionedJid: [sender],
           forwardingScore: 5,
@@ -628,7 +628,7 @@ gmd(
     await sendButtons(Gifted, from, {
       title: "",
       text: messageText,
-      footer: `> *${botFooter}*`,
+      footer: ` ${botFooter}`,
       image: { url: botPic },
       buttons: [
         {
