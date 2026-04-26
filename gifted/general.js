@@ -50,7 +50,7 @@ gmd(
         {
           name: "cta_url",
           buttonParamsJson: JSON.stringify({
-            display_text: "WaChannel",
+            display_text: "Channel",
             url: newsletterUrl,
           }),
         },
