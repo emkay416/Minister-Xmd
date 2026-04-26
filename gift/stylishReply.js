@@ -1,3 +1,5 @@
+//
+
 function stylishReply(text) {
     return `\`\`\`\n${text}\n\`\`\``;
 }
