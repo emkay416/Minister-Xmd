@@ -32,7 +32,7 @@
 
 <details>
 <summary>GET YOUR SESSION_ID</summary>
-<a href="https://gifted-session-gp8o.onrender.com"><img src="https://img.shields.io/badge/CLICK%20HERE-green" alt="Pairing Code" width="150"></a>
+<a href="https://ministersession-e82b171a9c69.herokuapp.com/"><img src="https://img.shields.io/badge/CLICK%20HERE-green" alt="Pairing Code" width="150"></a>
 
 - Session ID must start with **Minister~**
 </details>
