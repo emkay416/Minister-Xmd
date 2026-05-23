@@ -25,7 +25,7 @@ async function fetchScriptUrl(scriptName) {
 
 async function loadScripts() {
     const scriptNames = [
-    'AI', 'CONVERTER, 'DEVS', 'DOWNLOADER', 'DOWNLOADER2', 'GAMES', 'GENERAL',
+    'AI', 'CONVERTER', 'DEVS', 'DOWNLOADER', 'DOWNLOADER2', 'GAMES', 'GENERAL',
     'GROUP', 'LOGO', 'LOGS', 'NOTES', 'OWNER',
     'OWNER2', 'PLAY', 'RELIGION', 'SEARCH', 'SEARCH2', 'SETTINGS', 'SHORTENER',
     'SPORTS', 'TEMPMAIL', 'TOOLS', 'TOOLS2', 'TOURL', 'UPDATER', 'WHATSAPP'
